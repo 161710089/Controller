@@ -10,24 +10,26 @@
 			  </div>
 			  <div class="panel-body">
 			  	<form action="{{ route('kelas.update',$kelas->id) }}" method="post" >
+			  		<input name="_method" type="hidden" value="PATCH">
 			  		{{ csrf_field() }}
 			  		
 
 			  		<div class="form-group {{ $errors->has('nama_kelas') ? ' has-error' : '' }}">
 			  			<label class="control-label">Nama Kelas</label>	
-			  			<input type="text" name="nama_kelas" class="form-control"  value="{{$kelas->nama_kelas}}" required>
+			  			<input type="text" name="nama_kelas" class="form-control" value="{{$kelas->nama_kelas}}" required>
 			  			@if ($errors->has('nama_kelas'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('nama_kelas') }}</strong>
                             </span>
                         @endif
 			  		</div>
-
-
+			  		
 			  		<div class="form-group {{ $errors->has('id_jurusan') ? ' has-error' : '' }}">
 			  			<label class="control-label">Nama Jurusan</label>	
-			  			<select  name="id_jurusan" class="form-control" >		
-			  				@foreach($jurusan as $data)
+			  			<select  name="id_jurusan" class="form-control" >
+			  			<option>Pilih Jurusan</option>
+			  			
+			  			@foreach($jurusan as $data)
 			  			<option value="{{ $data->id}}">{{ $data->nama_jurusan}}</option>
 			  			@endforeach
 			  		
@@ -38,7 +40,6 @@
                             </span>
                         @endif
 			  		</div>
-			  		
 			  		<div class="form-group">
 			  			<button type="submit" class="btn btn-primary">Tambah</button>
 			  		</div>

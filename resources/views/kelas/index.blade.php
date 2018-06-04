@@ -4,7 +4,7 @@
 	<div class="container">
 		<div class="col-md-12">
 			<div class="panel panel-primary">
-			  <div class="panel-heading">Kaisar Jepang
+			  <div class="panel-heading">Kelas
 			  	<div class="panel-title pull-right"><a href="{{ route('kelas.create') }}">Tambah</a>
 			  	</div>
 			  </div>
@@ -29,9 +29,6 @@
 				    
 						<td>
 							<a class="btn btn-warning" href="{{ route('kelas.edit',$data->id) }}">Edit</a>
-						</td>
-						<td>
-							<a href="{{ route('kelas.show',$data->id) }}" class="btn btn-success">Show</a>
 						</td>
 						<td>
 							<form method="post" action="{{ route('kelas.destroy',$data->id) }}">

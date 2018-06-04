@@ -52,11 +52,14 @@
                                     
                                         <div class="form-group">
                                             <label>Kelas</label>
-                                            <select class="form-control" value"" name="kls">
+                        @php $no = 1; @endphp
+                        @foreach($absensi_siswa as $data)
+    
+                                            <select class="form-control" value"{{$data->nama_kelas}}" name="kls">
                                                 <option value='{{$kelas->nama_kelas}}'></option>            
                                             </select>
                                         </div>
-                                        
+                         @endforeach         
                                 <div class="col-lg-4">
 
                                         <div class="form-group">
