@@ -1,4 +1,4 @@
-@extends('layouts.appp')
+@extends('layouts.admin')
 @section('content')
 
 
@@ -27,76 +27,6 @@
 
 <body>
 
-    <div id="wrapper">
-
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="media.php?module=home">SISTEM ABSENSI REAL TIME</a>
-            </div>
-            <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-User : Ghaluh Ayu Imas Larasati, S. Pd. 
-
-                   </a>
-                </li>
-       <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-Sekolah : Madrasah Tsanawiyah Negeri Sidoharjo | XII 
-                   </a>
-                </li>
-
-<li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="" href="logout.php">
-Logout 
-                   </a>
-                </li>                
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-Tanggal : 02-06-2018 
-                   </a>
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-
-            <div class="navbar-default navbar-static-side" role="navigation">
-                <div class="sidebar-collapse">
-                    <ul class="nav" id="side-menu">
-                     
-
-
-
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Data Absensi<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="media.php?module=pilih">Input Data</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-
-
-                        <li>
-                            <a href="media.php?module=guru_det"><i class="fa fa-dashboard fa-fw"></i> Data Guru</a>
-                        </li>
-      
-                    </ul>
-                    <!-- /#side-menu -->
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
 
         <div id="page-wrapper">
           <div class="row">
@@ -119,11 +49,12 @@ Tanggal : 02-06-2018
 <input type="hidden" name="module" value="input_absen">
 <input type="hidden" name="jam" value="1">
 
+                                    
                                         <div class="form-group">
                                             <label>Kelas</label>
-                                            <select class="form-control" name="kls">
-
-  <option value='10'>Madrasah Tsanawiyah Negeri Sidoharjo | XII</option>                                            </select>
+                                            <select class="form-control" value"" name="kls">
+                                                <option value='{{$kelas->nama_kelas}}'></option>            
+                                            </select>
                                         </div>
                                         
                                 <div class="col-lg-4">

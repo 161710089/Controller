@@ -1,4 +1,4 @@
-@extends('layouts.appp')
+@extends('layouts.admin')
 
 @section('content')
 
@@ -25,6 +25,7 @@
 </head>
 
 <body>
+
 </body>
 
 </html>

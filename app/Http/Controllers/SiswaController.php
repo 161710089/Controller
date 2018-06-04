@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Siswa;
+use App\kelas;
 class SiswaController extends Controller
 {
     /**
@@ -13,9 +14,9 @@ class SiswaController extends Controller
      */
      public function index()
     {
-            $siswa = siswa::all();
+            $siswa = siswa::with('kelas')->get();
         return view('siswa.index',compact('siswa'));
-    
+         
     }
 
     /**
@@ -25,7 +26,7 @@ class SiswaController extends Controller
      */
    public function create()
  {
-        return view('siswa.create');
+        return view('siswa.input');
     }    /**
      * Store a newly created resource in storage.
      *
@@ -56,7 +57,7 @@ class SiswaController extends Controller
         
         // dd($siswa);
         $siswa->save();
-        return redirect()->route('siswa.index');    }
+        return redirect()->route('siswa.input');    }
     /**
      * Display the specified resource.
      *

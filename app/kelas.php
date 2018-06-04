@@ -16,5 +16,8 @@ public $timestamp = true;
 	public function jurusan() {
 		return $this->belongsTo('App\jurusan', 'id_jurusan');
 	}
+	public function absensi_siswa() {
+		return $this->hasMany('App\absensi_siswa', 'id_kelas');
+	}
 
 }

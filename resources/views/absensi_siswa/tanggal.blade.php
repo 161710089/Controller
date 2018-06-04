@@ -1,4 +1,4 @@
-@extends('layouts.appp')
+@extends('layouts.admin')
 @section('content')
 
 <!DOCTYPE html>

@@ -1,4 +1,9 @@
 
+@extends('layouts.admin')
+@section('content')
+
+
+
 <!DOCTYPE html>
 <html>
 
@@ -8,156 +13,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>SISTEM ABSENSI REAL TIME</title>
-
-    <!-- Core CSS - Include with every page -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <!-- Page-Level Plugin CSS - Tables -->
-    <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
-
-    <!-- SB Admin CSS - Include with every page -->
-    <link href="css/sb-admin.css" rel="stylesheet">
-
+    <link href="css/bootstrap.min.css" rel="stylesheet">   
 </head>
 
 <body>
 
-    <div id="wrapper">
-
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="media.php?module=home">SISTEM ABSENSI REAL TIME</a>
-            </div>
-            <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-User : Ghaluh Ayu Imas Larasati, S. Pd. 
-
-                   </a>
-                </li>
-       <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-Sekolah : Madrasah Tsanawiyah Negeri Sidoharjo | XII 
-                   </a>
-                </li>
-
-<li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="" href="logout.php">
-Logout 
-                   </a>
-                </li>                
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-Tanggal : 02-06-2018 
-                   </a>
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-
-            <div class="navbar-default navbar-static-side" role="navigation">
-                <div class="sidebar-collapse">
-                    <ul class="nav" id="side-menu">
-              
-
-
-
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Data Absensi<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="media.php?module=pilih">Input Data</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-
-
-                        <li>
-                            <a href="media.php?module=guru_det"><i class="fa fa-dashboard fa-fw"></i> Data Guru</a>
-                        </li>
-      
-                    </ul>
-                    <!-- /#side-menu -->
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
-
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-					<h3 class="page-header"><strong>Input Data Absensi Tanggal : 02-06-2018 </strong></h3>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
+     
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Data Siswa Kelas XII         
                         </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                           <form method="post" role="form" action="absensi_siswa">
+              
+      <div class="panel-body">
+                <form action="{{ route('absensi_siswa.store') }}" method="post" >
+                    {{ csrf_field() }}
+                      
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">NIS</th>
-                                            <th class="text-center">Nama</th>
-                                            <th class="text-center">Jenis Kelamin</th>
-                                            <th class="text-center">Alamat</th>
-                                            <th class="text-center">No Telepon</th>
+                                            <th class="text-center">Nama Siswa</th>
+                                            <th class="text-center">Nama Kelas</th>
+                                            <th class="text-center">Tanggal</th>
+                                            <th class="text-center">Petugas Piket</th>
                                             <th class="text-center">Keterangan</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php $no = 1; @endphp
-                                        @foreach($siswa as $data)
-                    
+                                     
                                         <tr class="odd gradeX">
-                                            
-                                            <td>{{ $data->nis }}</td>
-                                            <td>{{ $data->nama }}</td>
+                                            <td>aa</td>
+                                            <td>Alfaiz Faroko</td>
                                             <td class="text-center">Laki - Laki</td>
 
-                                            <td>-</td>
-                                            <td>85733743907</td>
+                                            <td>81332036346</td>
                                             <td class="text-center">
-                                                                                    <div class="form-group">
+                                            <div class="form-group">
 
 
                                             
                                             <label class="radio-inline">
-                                                <input type="radio" name="1" value="A" checked >A
+                                                <input type="radio" name="keterangan" value="A" checked >A
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="1" value="I">I
+                                                <input type="radio" name="keterangan" value="I">I
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="1" value="S">S
+                                                <input type="radio" name="keterangan" value="S">S
                                             </label>
 
                                             <label class="radio-inline">
-                                                <input type="radio" name="1" value="M" >M
+                                                <input type="radio" name="keterangan" value="M" >M
                                             </label>
 
                                             <label class="radio-inline">
-                                                <input type="radio" name="1" value="N" >N
+                                                <input type="radio" name="keterangan" value="N" >N
                                             </label>
-
 
 
 
@@ -171,7 +82,6 @@ Tanggal : 02-06-2018
                                             <td>Alfaiz Faroko</td>
                                             <td class="text-center">Laki - Laki</td>
 
-                                            <td>-</td>
                                             <td>81332036346</td>
                                             <td class="text-center">
                                                                                     <div class="form-group">
@@ -192,7 +102,7 @@ Tanggal : 02-06-2018
                                                 <input type="radio" name="2" value="M" >M
                                             </label>
 
-                                            <label class="radio-inline">
+                                                <label class="radio-inline">
                                                 <input type="radio" name="2" value="N" >N
                                             </label>
 
@@ -223,15 +133,10 @@ Tanggal : 02-06-2018
                             </div>
                         </div>
                         <!-- /.panel-body -->
-                    </div>
                     <!-- /.panel -->
-                </div>
                 <!-- /.col-lg-12 -->
-            </div>
             <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
-
+     
     </div>
     <!-- /#wrapper -->
 
@@ -258,3 +163,4 @@ Tanggal : 02-06-2018
 
 </html>
 
+@endsection

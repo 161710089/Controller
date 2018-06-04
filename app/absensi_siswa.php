@@ -17,5 +17,8 @@ public function siswa() {
 public function petugas_piket() {
 	return $this->belongsTo('App\petugas_piket', 'id_PetugasPiket');
 	}
+public function kelas() {
+	return $this->belongsTo('App\kelas', 'id_kelas');
+	}
 
 }

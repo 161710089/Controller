@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\kelas;
+use App\jurusan;
 class KelasController extends Controller
 {
     /**
@@ -13,9 +14,9 @@ class KelasController extends Controller
      */
      public function index()
     {
-            $kelas = kelas::all();
+            $kelas = kelas::with('jurusan')->get();
         return view('kelas.index',compact('kelas'));
-    
+        
     }
 
     /**
@@ -25,7 +26,10 @@ class KelasController extends Controller
      */
    public function create()
  {
-        return view('kelas.create');
+        $kelas =  kelas::all();
+        $jurusan =  jurusan::all();
+        
+        return view('kelas.create',compact('kelas','jurusan'));
     }    /**
      * Store a newly created resource in storage.
      *
@@ -40,7 +44,8 @@ class KelasController extends Controller
             ]);
 
         $kelas = new kelas;
-        $kelas->nama_jurusan = $request->nama_jurusan;
+        
+        $kelas->nama_kelas = $request->nama_kelas;
         $kelas->id_jurusan = $request->id_jurusan;
         // dd($kelas);
         $kelas->save();
@@ -67,7 +72,9 @@ class KelasController extends Controller
     {
         // memanggil data kelas berdasrkan id di halaman kelas edit
         $kelas = kelas::findOrFail($id);
-        return view('kelas.edit',compact('kelas'));
+        $jurusan = jurusan::all();
+        $selectedjurusan = jurusan::findOrFail($id)->id_jurusan;
+        return view('kelas.edit',compact('jurusan','kelas','selectedjurusan'));
     }
 
     /**
@@ -94,14 +101,14 @@ class KelasController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\petugas_piket  $petugas_piket
+     * @param  \App\kelas  $kelas
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
            // delete data beradasarkan id
-        $petugas_piket = petugas_piket::findOrFail($id);
-        $petugas_piket->delete();
-        return redirect()->route('petugas_piket.index');      }
+        $kelas = kelas::findOrFail($id);
+        $kelas->delete();
+        return redirect()->route('kelas.index');      }
 
 }

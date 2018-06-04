@@ -28,8 +28,15 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::resource('absensi_siswa','SiswaController');
+Route::resource('absensi_siswa','AbsensiSiswaController');
 Route::resource('petugas_piket','PetugasPiketController');
-Route::resource('merk','MerkController');
-Route::resource('toko','TokoController');
+Route::resource('siswa','SiswaController');
+Route::resource('kelas','KelasController');
+	
+	Route::get('/cek',function(){
+		return view('layouts.admin');
+	});
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
