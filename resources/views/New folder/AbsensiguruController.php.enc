@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\absensi_guru;
-use App\guru;
-class Absensi_GuruController extends Controller
+use App\absensigurus;
+use App\gurus;
+class AbsensiguruController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class Absensi_GuruController extends Controller
     public function index()
     {
         
-        $absensi_guru = absensi_guru::with('guru')->get();
-        return view('absensi_guru.index',compact('absensi_guru'));
+        $absensigurus = absensigurus::with('guru')->get();
+        return view('absensiguru.index',compact('absensigurus'));
     }
 
     /**
@@ -26,9 +26,9 @@ class Absensi_GuruController extends Controller
      */
     public function create()
     {
-        $absensi_guru = absensi_guru::all();
-        $guru = guru::all();
-        return view('absensi_guru.create',compact('absensi_guru', 'guru'));
+        $absensigurus = absensigurus::all();
+        $gurus = gurus::all();
+        return view('absensiguru.create',compact('absensigurus', 'gurus'));
     }
 
     /**
@@ -41,16 +41,16 @@ class Absensi_GuruController extends Controller
     {
          $request->validate([
             
-            'id_guru' => 'required',
+            'id_gurus' => 'required',
             'keterangan'=>'required|min:2',
 
         ]);
 
-        $absensi_guru = new absensi_guru;
-        $absensi_guru->id_guru = $request->id_guru;
-        $absensi_guru->keterangan = $request->keterangan;
-        $absensi_guru->save();
-        return redirect()->route('absensi_guru.index');
+        $absensigurus = new absensigurus;
+        $absensigurus->id_gurus = $request->id_gurus;
+        $absensigurus->keterangan = $request->keterangan;
+        $absensigurus->save();
+        return redirect()->route('absensiguru.index');
     }
 
     /**
@@ -61,8 +61,8 @@ class Absensi_GuruController extends Controller
      */
     public function show($id)
     {
-        $absensi_guru = absensi_guru::findOrFail($id);
-            return view('absensi_guru.show', compact('absensi_guru'));
+        $absensigurus = absensigurus::findOrFail($id);
+            return view('absensiguru.show', compact('absensigurus'));
     }
 
     /**
@@ -73,10 +73,10 @@ class Absensi_GuruController extends Controller
      */
     public function edit($id)
     {
-        $absensi_guru = absensi_guru::findOrFail($id);
-        $guru = guru::all();
-        $selectedguru = guru::findOrFail($id)->id_guru;
-        return view('absensi_guru.edit',compact('guru','absensi_guru','selectedguru'));
+        $absensigurus = absensigurus::findOrFail($id);
+        $gurus = gurus::all();
+        $selectedguru = gurus::findOrFail($id)->id_gurus;
+        return view('absensiguru.edit',compact('gurus','absensigurus','selectedguru'));
     }
 
     /**
@@ -90,15 +90,15 @@ class Absensi_GuruController extends Controller
     {
          $this->validate($request, [
         
-            'id_guru'=>'required|max:255',
+            'id_gurus'=>'required|max:255',
             'keterangan'=>'required|min:2',
         ]);
 
-        $absensi_guru = absensi_guru::findOrFail($id);
-        $absensi_guru->id_guru = $request->id_guru;
-        $absensi_guru->keterangan = $request->keterangan;
-        $absensi_guru->save();
-        return redirect()->route('absensi_guru.index');
+        $absensigurus = absensigurus::findOrFail($id);
+        $absensigurus->id_gurus = $request->id_gurus;
+        $absensigurus->keterangan = $request->keterangan;
+        $absensigurus->save();
+        return redirect()->route('absensiguru.index');
     }
 
     /**
@@ -109,8 +109,8 @@ class Absensi_GuruController extends Controller
      */
     public function destroy($id)
     {
-        $absensi_guru = absensi_guru::findOrFail($id);
-       $absensi_guru->delete();
-        return redirect()->route('absensi_guru.index');
+        $absensigurus = absensigurus::findOrFail($id);
+       $absensigurus->delete();
+        return redirect()->route('absensiguru.index');
     }
 }

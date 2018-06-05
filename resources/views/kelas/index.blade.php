@@ -1,12 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('content')
 <div class="row">
 	<div class="container">
 		<div class="col-md-12">
 			<div class="panel panel-primary">
 			  <div class="panel-heading">Kelas
-			  	<div class="panel-title pull-right"><a href="{{ route('kelas.create') }}">Tambah</a>
-			  	</div>
 			  </div>
 			  <div class="panel-body">
 			  	<div class="table-responsive">
@@ -14,18 +12,21 @@
 				  	<thead>
 			  		<tr>
 			  		  <th>No</th>
-					  <th>Nama Kelas</th>
-					  <th>Nama Jurusan</th>
-					  <th colspan="3">Action</th>
-			  		</tr>
+					<tr>    
+<td colspan="5"  class="success text-center" >No</td>
+<td  colspan="5" class="text-center success">Nama Kelas</td>
+<td  colspan="5" class="text-center success">Nama Jurusan</td>
+					</tr>
 				  	</thead>
 				  	<tbody>
 				  		@php $no = 1; @endphp
 				  		@foreach($kelas as $data)
+
+
 				  	  <tr>
-				    	<td>{{ $no++ }}</td>
-				    	<td>{{ $data->nama_kelas }}</td>
-				    	<td>{{ $data->jurusan->nama_jurusan }}</td>
+				    	<td colspan="5" class="text-center success">{{ $no++ }}</td>
+				    	<td colspan="5" class="text-center success">{{ $data->nama_kelas }}</td>
+				    	<td colspan="5" class="text-center success">{{ $data->jurusan->nama_jurusan }}</td>
 				    
 						<td>
 							<a class="btn btn-warning" href="{{ route('kelas.edit',$data->id) }}">Edit</a>
@@ -49,3 +50,6 @@
 	</div>
 </div>
 @endsection
+
+				    
+				    

@@ -35,8 +35,8 @@ class GuruController extends Controller
     public function store(Request $request)
      {
          $this->validate($request,[
-            'nik' => 'required|max:255',
-            'nama' => 'required|max:255',
+            'Nik' => 'required|max:255',
+            'Nama' => 'required|max:255',
             'jk' => 'required|max:255',
             'tempat_lahir' => 'required|max:255',
             'tanggal_lahir' => 'required|max:255',
@@ -45,9 +45,8 @@ class GuruController extends Controller
             ]);
 
         $guru = new guru;
-        $guru->nik = $request->nik;
-        $guru->nama = $request->nama;
-        $guru->id_kelas = $request->id_kelas;
+        $guru->Nik = $request->Nik;
+        $guru->Nama = $request->Nama;
         $guru->jk    = $request->jk   ; 
         $guru->tempat_lahir = $request->tempat_lahir;
         $guru->tanggal_lahir = $request->tanggal_lahir;
@@ -91,9 +90,8 @@ class GuruController extends Controller
     public function update(Request $request,$id)
     {
          $this->validate($request,[
-            'nik' => 'required|max:255',
-            'nama' => 'required|max:255',
-            'id_kelas' => 'required|max:255',
+            'Nik' => 'required|max:255',
+            'Nama' => 'required|max:255',
             'jk' => 'required|max:255',
             'tempat_lahir' => 'required|max:255',
             'tanggal_lahir' => 'required|max:255',
@@ -101,9 +99,8 @@ class GuruController extends Controller
             ]);
 
         $guru =guru::findOrFail($id);
-        $guru->nik = $request->nik;
-        $guru->nama = $request->nama;
-        $guru->id_kelas = $request->id_kelas;
+        $guru->Nik = $request->Nik;
+        $guru->Nama = $request->Nama;
         $guru->jk    = $request->jk   ; 
         $guru->tempat_lahir = $request->tempat_lahir;
         $guru->tanggal_lahir = $request->tanggal_lahir;

@@ -13,13 +13,10 @@
                         
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="index.html">Input Data </a>
+                                    <a href="{{ route('absensi_siswa.create') }}">Input Data </a>
                                 </li>
                                 <li>
-                                    <a href="index2.html">Edit Data </a>
-                                </li>
-                                <li>
-                                    <a href="index3.html">View Data </a>
+                                    <a href="{{ route('siswa.index') }}">View Data </a>
                                 </li>
                                 </ul>
                         </li>
@@ -31,13 +28,10 @@
                         
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="index.html">Input Data </a>
+                                    <a href="{{ route('guru.create') }}">Input Data </a>
                                 </li>
                                 <li>
-                                    <a href="index2.html">Edit Data </a>
-                                </li>
-                                <li>
-                                    <a href="index3.html">View Data </a>
+                                    <a href="{{ route('guru.index') }}">View Data </a>
                                 </li>
                                 </ul>
                     
@@ -48,36 +42,26 @@
                         
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="index.html">Input Data </a>
-                                </li>
-                                <li>
-                                    <a href="index2.html">Edit Data </a>
+                                    <a href="{{ route('absensi_siswa.create') }}">Input Data </a>
                                 </li>
                                 <li>
                                     <a href="index3.html">View Data </a>
                                 </li>
                                 </ul>
                     
-                        <li>
-                            <a href="chart.html">
-                                <i class="fas fa-chart-bar"></i>Charts</a>
-                        </li>
-                        <li>
-                            <a href="table.html">
-                                <i class="fas fa-table"></i>Tables</a>
-                        </li>
-                        <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-calendar-alt"></i>Calendar</a>
-                        </li>
-                        <li>
-                            <a href="map.html">
-                                <i class="fas fa-map-marker-alt"></i>Maps</a>
-                        </li>
+                    <ul class="list-unstyled navbar__list">
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-tachometer-alt"></i>Data kelas</a>
+                        
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="{{ route('kelas.create') }}">Input Data </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('kelas.index') }}">View Data </a>
+                                </li>
+                                </ul>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-copy"></i>Pages</a>

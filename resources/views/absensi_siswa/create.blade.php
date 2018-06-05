@@ -28,40 +28,73 @@
                 <form action="{{ route('absensi_siswa.store') }}" method="post" >
                     {{ csrf_field() }}
                       
-                               <table class="table">
-                    <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>Nama Kelas</th>
-                      <th>Nama Jurusan</th>
-                      <th colspan="3">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        @php $no = 1; @endphp
-                        @foreach($kelas as $data)
-                      <tr>
-                        <td>{{ $no++ }}</td>
-                        <td>{{ $data->nama_kelas }}</td>
-                        <td>{{ $data->jurusan->nama_jurusan }}</td>
-                    
-                      </tr>
-                      @endforeach   
-                    </tbody>
-                  </table>
-                   
-                     @php $no = 1; @endphp
-                        @foreach($absensi_siswa as $data)
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Nama Siswa</th>
+                                            <th class="text-center">Nama Kelas</th>
+                                            <th class="text-center">Tanggal</th>
+                                            <th class="text-center">Petugas Piket</th>
+                                            <th class="text-center">Keterangan</th>
 
+                                        </tr>
+                                    </thead>
+                                    <tbody>
                                         <tr class="odd gradeX">
-                                            <td>{{$data->nis}}</td>
+                                
+                                            <td><div class="form-group {{ $errors->has('Nama') ? ' has-error' : '' }}">
+                        <label class="control-label">tempat lahir</label>   
+                        <input type="text" name="Nama" value="{{$siswa->Nama}}" class="form-control"  required>
+                        @if ($errors->has('Nama'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('Nama') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+</td>
                                             <td>Alfaiz Faroko</td>
                                             <td class="text-center">Laki - Laki</td>
 
                                             <td>81332036346</td>
                                             <td class="text-center">
-   @endforeach  
+                                            <div class="form-group">
 
+
+                                            <label class="radio-inline">
+                                                <input type="radio" name="keterangan" value="A" checked >A
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="keterangan" value="I">I
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="keterangan" value="S">S
+                                            </label>
+
+                                            <label class="radio-inline">
+                                                <input type="radio" name="keterangan" value="M" >M
+                                            </label>
+
+                                            <label class="radio-inline">
+                                                <input type="radio" name="keterangan" value="N" >N
+                                            </label>
+
+
+
+                                        </div>
+
+                                            </td>
+
+                                        </tr>
+                                
+                   
+                                        <tr class="odd gradeX">
+                                            <td>{{$siswa->nis}}</td>
+                                            <td>Alfaiz Faroko</td>
+                                            <td class="text-center">Laki - Laki</td>
+
+                                            <td>81332036346</td>
+                                            <td class="text-center">
+   
                                                                                     <div class="form-group">
 
 

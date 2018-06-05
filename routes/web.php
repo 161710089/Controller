@@ -23,14 +23,27 @@ Route::get('/input',function(){
 	return view('petugas_piket.input');
 
 });
+
+Route::get('/CreateKelas',function(){
+	return view('kelas.create');
+
+});
+
+Route::get('/ViewKelas',function(){
+	return view('kelas.index');
+
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::resource('absensi_siswa','AbsensiSiswaController');
+Route::resource('absensi_guru','AbsensiGuruController');
 Route::resource('petugas_piket','PetugasPiketController');
 Route::resource('siswa','SiswaController');
+Route::resource('guru','GuruController');
 Route::resource('kelas','KelasController');
 	
 	Route::get('/cek',function(){

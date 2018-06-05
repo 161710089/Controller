@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\absensi_siswa;
 use App\siswa;
+use App\kelas;
+use App\petugas_piket;
+
 class AbsensiSiswaController extends Controller
 {
     /**
@@ -27,8 +30,8 @@ class AbsensiSiswaController extends Controller
    public function create()
  {
         $absensi_siswa = new kelas;
-        $absensi_siswa = new petugas_piket;
-        $absensi_siswa = new siswa;
+        $petugas_piket = new petugas_piket;
+        $siswa = new siswa;
         return view('absensi_siswa.create',compact('petugas_piket','siswa','kelas'));
     }    /**
      * Store a newly created resource in storage.
@@ -78,6 +81,9 @@ class AbsensiSiswaController extends Controller
     {
         // memanggil data absensi_siswa berdasrkan id di halaman absensi_siswa edit
         $absensi_siswa = absensi_siswa::findOrFail($id);
+        $kelas = kelas::all();
+        $siswa = jurusan::all();
+     
         return view('absensi_siswa.edit',compact('absensi_siswa'));
     }
 

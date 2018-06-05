@@ -71,10 +71,11 @@ class KelasController extends Controller
    public function edit($id)
     {
         // memanggil data kelas berdasrkan id di halaman kelas edit
+        
+
         $kelas = kelas::findOrFail($id);
         $jurusan = jurusan::all();
-        $selectedjurusan = jurusan::findOrFail($id)->id_jurusan;
-        return view('kelas.edit',compact('jurusan','kelas','selectedjurusan'));
+        return view('kelas.edit',compact('jurusan','kelas'));
     }
 
     /**

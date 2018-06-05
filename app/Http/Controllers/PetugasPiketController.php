@@ -14,7 +14,7 @@ class PetugasPiketController extends Controller
      public function index()
     {
             $petugas_piket = petugas_piket::all();
-        return view('petugas_piket.index',compact('petugas_piket'));
+        return view('PetugasPiket.index',compact('petugas_piket'));
     
     }
 

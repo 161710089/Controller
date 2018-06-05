@@ -1,4 +1,4 @@
-@extends('layouts.app')
+ed@extends('layouts.app')
 @section('content')
 <div class="row">
 	<div class="container">
@@ -9,17 +9,17 @@
 			  	</div>
 			  </div>
 			  <div class="panel-body">
-			  	<form action="{{ route('kelas.update',$kelas->id) }}" method="post" >
+			  	<form action="{{ route('absensi_siswa.update',$absensi_siswa->id) }}" method="post" >
 			  		<input name="_method" type="hidden" value="PATCH">
 			  		{{ csrf_field() }}
 			  		
 
-			  		<div class="form-group {{ $errors->has('nama_kelas') ? ' has-error' : '' }}">
-			  			<label class="control-label">Nama Kelas</label>	
-			  			<input type="text" name="nama_kelas" class="form-control" value="{{$kelas->nama_kelas}}" required>
-			  			@if ($errors->has('nama_kelas'))
+			  		<div class="form-group {{ $errors->has('Nama') ? ' has-error' : '' }}">
+			  			<label class="control-label">Nama</label>	
+			  			<input type="text" name="Nama" class="form-control" value="{{$absensi_siswa->siswa->Nama}}" required>
+			  			@if ($errors->has('Nama'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('nama_kelas') }}</strong>
+                                <strong>{{ $errors->first('Nama') }}</strong>
                             </span>
                         @endif
 			  		</div>

@@ -4,13 +4,14 @@
 	<div class="container">
 		<div class="col-md-12">
 			<div class="panel panel-primary">
-			  <div class="panel-heading">Tambah Data Aneka kaisar 
+			  <div class="panel-heading">Tambah Data Kelas 
 			  	<div class="panel-title pull-right"><a href="{{ url()->previous() }}">Kembali</a>
 			  	</div>
 			  </div>
 			  <div class="panel-body">
 			  	<form action="{{ route('kelas.store') }}" method="post" >
 			  		{{ csrf_field() }}
+			  	
 			  		<div class="form-group {{ $errors->has('nama_kelas') ? ' has-error' : '' }}">
 			  			<label class="control-label">Nama Kelas</label>	
 			  			<input type="text" name="nama_kelas" class="form-control"  required>
