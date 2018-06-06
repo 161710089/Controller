@@ -38,13 +38,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-Route::resource('absensi_siswa','AbsensiSiswaController');
-Route::resource('absensi_guru','AbsensiGuruController');
-Route::resource('petugas_piket','PetugasPiketController');
-Route::resource('siswa','SiswaController');
-Route::resource('guru','GuruController');
-Route::resource('kelas','KelasController');
+	
 	
 	Route::get('/cek',function(){
 		return view('layouts.admin');
@@ -53,3 +47,15 @@ Route::resource('kelas','KelasController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix'=>'admin' ,'middleware'=>['auth','role:admin']], 
+	function (){
+
+Route::resource('laporan_absensi_siswa','LaporanAbsensiSiswaController');
+Route::resource('absensi_siswa','AbsensiSiswaController');
+Route::resource('absensi_guru','AbsensiGuruController');
+Route::resource('petugas_piket','PetugasPiketController');
+Route::resource('siswa','SiswaController');
+Route::resource('guru','GuruController');
+Route::resource('kelas','KelasController');
+	});

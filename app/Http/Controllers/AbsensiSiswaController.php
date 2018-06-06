@@ -18,6 +18,7 @@ class AbsensiSiswaController extends Controller
    public function index()
     {
             $absensi_siswa = absensi_siswa::with('siswa','petugas_piket','kelas')->get();
+    
         return view('absensi_siswa.index',compact('absensi_siswa'));
     
     }
@@ -29,10 +30,13 @@ class AbsensiSiswaController extends Controller
      */
    public function create()
  {
-        $absensi_siswa = new kelas;
-        $petugas_piket = new petugas_piket;
+         $petugas_piket = new petugas_piket;
         $siswa = new siswa;
-        return view('absensi_siswa.create',compact('petugas_piket','siswa','kelas'));
+        $absensi_siswa = absensi_siswa::with('siswa','petugas_piket','kelas')->get();
+
+        $siswas = siswa::with('kelas')->get();
+      
+        return view('absensi_siswa.create',compact('petugas_piket','siswa','kelas','absensi_siswa','siswas'));
     }    /**
      * Store a newly created resource in storage.
      *
@@ -41,10 +45,11 @@ class AbsensiSiswaController extends Controller
      */
     public function store(Request $request)
      {
+        // $date =date("Y-m-d") tahun-bulan-hari
          $this->validate($request,[
             'id_siswa' => 'required|max:255',
             'id_kelas' => 'required|max:255',
-            'tanggal' => 'required|max:255',
+            'tanggal' => '$date(format)',
             'keterangan' => 'required|max:255',
             'id_PetugasPiket' => 'required|max:255',
             ]);

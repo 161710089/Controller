@@ -13,7 +13,7 @@
                         
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="{{ route('absensi_siswa.create') }}">Input Data </a>
+                                    <a href="{{ route('siswa.create') }}">Input Data </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('siswa.index') }}">View Data </a>
@@ -34,6 +34,7 @@
                                     <a href="{{ route('guru.index') }}">View Data </a>
                                 </li>
                                 </ul>
+                  </li>  
                     
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
@@ -62,18 +63,19 @@
                                     <a href="{{ route('kelas.index') }}">View Data </a>
                                 </li>
                                 </ul>
+                        
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-copy"></i>Pages</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="login.html">Login</a>
+                                    <a href="{{ route('absensi_siswa.create') }}">Login</a>
                                 </li>
                                 <li>
-                                    <a href="register.html">Register</a>
+                                    <a href="{{ route('laporan_absensi_siswa.create') }}">Register</a>
                                 </li>
                                 <li>
-                                    <a href="forget-pass.html">Forget Password</a>
+                                    <a href="{{ route('laporan_absensi_siswa.index') }}">Forget Password</a>
                                 </li>
                             </ul>
                         </li>
@@ -117,6 +119,7 @@
                             </ul>
                         </li>
                     </ul>
+
                 </nav>
             </div>
         </aside>

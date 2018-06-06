@@ -13,55 +13,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>SISTEM ABSENSI REAL TIME</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">   
+    <link href="/css/bootstrap.min.css" rel="stylesheet">   
 </head>
 
 <body>
 
-     
+                            @php $no = 1; @endphp
+                        @foreach($absensi_siswa as $data)
+                      
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Data Siswa Kelas XII         
+                            Data Siswa Kelas {{$data->kelas->nama_kelas}}         
                         </div>
-              
+              @endforeach
+                 
       <div class="panel-body">
                 <form action="{{ route('absensi_siswa.store') }}" method="post" >
                     {{ csrf_field() }}
-                      
+                                  
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                 
                                     <thead>
                                         <tr>
+                                            <th class="text-center">No</th>
                                             <th class="text-center">Nama Siswa</th>
-                                            <th class="text-center">Nama Kelas</th>
-                                            <th class="text-center">Tanggal</th>
+                                            <th class="text-center">Nis</th>
                                             <th class="text-center">Petugas Piket</th>
                                             <th class="text-center">Keterangan</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
+                                  @php $no = 1; @endphp
+                        @foreach($siswas as $data)
+                 
                                         <tr class="odd gradeX">
-                                
-                                            <td><div class="form-group {{ $errors->has('Nama') ? ' has-error' : '' }}">
-                        <label class="control-label">tempat lahir</label>   
-                        <input type="text" name="Nama" value="{{$siswa->Nama}}" class="form-control"  required>
-                        @if ($errors->has('Nama'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('Nama') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-</td>
-                                            <td>Alfaiz Faroko</td>
-                                            <td class="text-center">Laki - Laki</td>
+                                            <td class="text-center">{{$no++}}</td>
+                                            <td name"id_siswa" class="text-center">{{$data->Nama}}</td>
+                                            <td class="text-center">{{$data->Nis}}</td>
+                                            <td class="text-center">{{ Auth::user()->name }}                        
+                     </td>
 
-                                            <td>81332036346</td>
+           
                                             <td class="text-center">
                                             <div class="form-group">
 
-
+                        
                                             <label class="radio-inline">
-                                                <input type="radio" name="keterangan" value="A" checked >A
+                                                <input type="radio" name="keterangan" value="A" >A
                                             </label>
                                             <label class="radio-inline">
                                                 <input type="radio" name="keterangan" value="I">I
@@ -71,7 +70,7 @@
                                             </label>
 
                                             <label class="radio-inline">
-                                                <input type="radio" name="keterangan" value="M" >M
+                                                <input type="radio" name="keterangan" value="M">M
                                             </label>
 
                                             <label class="radio-inline">
@@ -86,47 +85,9 @@
 
                                         </tr>
                                 
-                   
-                                        <tr class="odd gradeX">
-                                            <td>{{$siswa->nis}}</td>
-                                            <td>Alfaiz Faroko</td>
-                                            <td class="text-center">Laki - Laki</td>
-
-                                            <td>81332036346</td>
-                                            <td class="text-center">
-   
-                                                                                    <div class="form-group">
-
-
-
-                                            
-                                            <label class="radio-inline">
-                                                <input type="radio" name="2" value="A" checked >A
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="2" value="I">I
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="2" value="S">S
-                                            </label>
-
-                                            <label class="radio-inline">
-                                                <input type="radio" name="2" value="M" >M
-                                            </label>
-
-                                                <label class="radio-inline">
-                                                <input type="radio" name="2" value="N" >N
-                                            </label>
-
-
-
-
-                                        </div>
-
-                                            </td>
-
-                                        </tr>
                                     </tbody>
+
+           @endforeach                                 
                                 </table>
                                         <button type="submit" class="btn btn-success">SImpan Data</button>
 

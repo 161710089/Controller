@@ -38,6 +38,17 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+                                <div class="form-group">
+                                            <label>Kelas</label>
+                        @php $no = 1; @endphp
+                        @foreach($absensi_siswa as $data)
+    
+                                            <select class="form-control" value="{{$data->kelas->nama_kelas}}" name="id_kelas">
+                                                <option value='{{$kelas->nama_kelas}}'></option>            
+                                            </select>
+                                        </div>
+                         @endforeach   
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
