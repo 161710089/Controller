@@ -30,7 +30,27 @@
       <div class="panel-body">
                 <form action="{{ route('absensi_siswa.store') }}" method="post" >
                     {{ csrf_field() }}
-                                  
+<label>tanggal</label>
+                         <input type="date" name="tanggal">         
+                    
+
+                    <div class="form-group {{ $errors->has('id_kelas') ? ' has-error' : '' }}">
+			  			<label class="control-label">Nama kelas</label>	
+			  			<select  name="id_kelas" class="form-control" >
+			  			<option>Pilih kelas</option>
+			  			
+			  			@foreach($absensi_siswa as $data)
+			  			<option value="{{ $data->id}}">{{ $data->kelas->nama_kelas}}</option>
+			  			@endforeach
+			  		
+			  			</select>
+			  			@if ($errors->has('id_kelas'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('id_kelas') }}</strong>
+                            </span>
+                        @endif
+			  		</div>
+			  		
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                  
                                     <thead>
@@ -48,8 +68,9 @@
                         @foreach($siswas as $data)
                  
                                         <tr class="odd gradeX">
-                                            <td class="text-center">{{$no++}}</td>
-                                            <td name"id_siswa" class="text-center">{{$data->Nama}}</td>
+                   							
+                   						    <td class="text-center">{{$no++}}</td>
+                                            <td  class="text-center">{{$data->Nama}}</td>
                                             <td class="text-center">{{$data->Nis}}</td>
                                             <td class="text-center">{{ Auth::user()->name }}                        
                      </td>
@@ -77,8 +98,15 @@
                                                 <input type="radio" name="keterangan" value="N" >N
                                             </label>
 
+                              @php $no = 1; @endphp
+                        @foreach($absensi_siswa as $data)
+    
+<td>
+							<a class="btn btn-warning" href="{{ route('absensi_siswa.edit',$data->id) }}">Edit</a>
+						</td>
+	@endforeach					
 
-
+           @endforeach                         
                                         </div>
 
                                             </td>
@@ -86,14 +114,12 @@
                                         </tr>
                                 
                                     </tbody>
-
-           @endforeach                                 
+        
                                 </table>
                                         <button type="submit" class="btn btn-success">SImpan Data</button>
 
 </form>
                             </div>
-                            <!-- /.table-responsive -->
 <br>
                             <div class="well">
                                 <h4>Keterangan Absensi</h4>
@@ -105,27 +131,15 @@
 
                             </div>
                         </div>
-                        <!-- /.panel-body -->
-                    <!-- /.panel -->
-                <!-- /.col-lg-12 -->
-            <!-- /.row -->
-     
     </div>
-    <!-- /#wrapper -->
-
-    <!-- Core Scripts - Include with every page -->
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-
-    <!-- Page-Level Plugin Scripts - Tables -->
     <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
     <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
 
-    <!-- SB Admin Scripts - Include with every page -->
     <script src="js/sb-admin.js"></script>
 
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
     $(document).ready(function() {
         $('#dataTables-example').dataTable();

@@ -84,7 +84,9 @@ class SiswaController extends Controller
         // memanggil data siswa berdasrkan id di halaman siswa edit
           $siswa = siswa::findOrFail($id);
           $kelas = kelas::all();
-        return view('siswa.edit',compact('kelas','siswa'));
+          $selectkelas = siswa::findOrFail($siswa->id)->id_kelas;
+        
+        return view('siswa.edit',compact('kelas','siswa','selectkelas'));
     }
 
     /**

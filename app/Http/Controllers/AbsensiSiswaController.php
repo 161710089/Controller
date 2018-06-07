@@ -18,11 +18,19 @@ class AbsensiSiswaController extends Controller
    public function index()
     {
             $absensi_siswa = absensi_siswa::with('siswa','petugas_piket','kelas')->get();
-    
-        return view('absensi_siswa.index',compact('absensi_siswa'));
+            $kelas =kelas::pluck('nama_kelas','id');
+        return view('absensi_siswa.index',compact('absensi_siswa','kelas'));
     
     }
-
+public function kelasAjax($id){
+    if ($id==0) {
+        $absensi_siswa = absensi_siswa::all();
+    }else{
+        $absensi_siswa = absensi_siswa::where('id_kelas','=',$id)->get();
+    }
+    return $absensi_siswa;
+}
+   
     /**
      * Show the form for creating a new resource.
      *
@@ -49,7 +57,7 @@ class AbsensiSiswaController extends Controller
          $this->validate($request,[
             'id_siswa' => 'required|max:255',
             'id_kelas' => 'required|max:255',
-            'tanggal' => '$date(format)',
+            'tanggal' => 'required|max:255',
             'keterangan' => 'required|max:255',
             'id_PetugasPiket' => 'required|max:255',
             ]);
@@ -87,9 +95,11 @@ class AbsensiSiswaController extends Controller
         // memanggil data absensi_siswa berdasrkan id di halaman absensi_siswa edit
         $absensi_siswa = absensi_siswa::findOrFail($id);
         $kelas = kelas::all();
-        $siswa = jurusan::all();
+        $siswa = siswa::all();
+        $new = new absensi_siswa;
+        $PetugasPiket = petugas_piket::all();
      
-        return view('absensi_siswa.edit',compact('absensi_siswa'));
+        return view('absensi_siswa.edit',compact('absensi_siswa','kelas','siswa','PetugasPiket'));
     }
 
     /**
@@ -102,19 +112,14 @@ class AbsensiSiswaController extends Controller
     public function update(Request $request,$id)
     {
          $this->validate($request,[
-            'id_siswa' => 'required|max:255',
-            'id_kelas' => 'required|max:255',
             'tanggal' => 'required|max:255',
             'keterangan' => 'required|max:255',
-            'id_PetugasPiket' => 'required|max:255',
             ]);
 
         $absensi_siswa =absensi_siswa::findOrFail($id);
-        $absensi_siswa->id_siswa = $request->id_siswa;
-        $absensi_siswa->id_kelas = $request->id_kelas;
+        $new =new absensi_siswa;
         $absensi_siswa->tanggal = $request->tanggal;
         $absensi_siswa->keterangan    = $request->keterangan   ; 
-        $absensi_siswa->id_PetugasPiket = $request->id_PetugasPiket;
         // dd($absensi_siswa);
         $absensi_siswa->save();
         return redirect()->route('absensi_siswa.index');    }

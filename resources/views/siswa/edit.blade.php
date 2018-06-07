@@ -37,11 +37,11 @@
 			  		
 			  		<div class="form-group {{ $errors->has('id_kelas') ? ' has-error' : '' }}">
 			  			<label class="control-label">Nama kelas</label>	
-			  			<select  name="id_kelas" value="{{$siswa->kelas->nama_kelas}}" class="form-control" >
+			  			<select  name="id_kelas" value="{{$siswa->kelas->nama_kelas}}"  class="form-control" >
 			  			<option>Pilih kelas</option>
 			  			
 			  			@foreach($kelas as $data)
-			  			<option value="{{ $data->id}}">{{ $data->nama_kelas}}</option>
+			  			<option value="{{ $data->id}}" {{$selectkelas == $data->id ? 'selected="selected"':'' }}>{{ $data->nama_kelas}}</option>
 			  			@endforeach
 			  		
 			  			</select>

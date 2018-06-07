@@ -28,7 +28,7 @@
 			  			<label class="control-label">Nama Jurusan</label>	
 			  			<select name="id_jurusan" class="form-control">
 			  				@foreach($jurusan as $data)
-			  				<option value="{{ $data->id }}" >{{ $data->nama_jurusan }}</option>
+			  				<option value="{{ $data->id }}" {{$selectjurusan == $data->id ? 'selected="selected"':'' }} >{{ $data->nama_jurusan }}</option>
 			  				@endforeach
 			  			</select>
 			  			@if ($errors->has('id_jurusan'))

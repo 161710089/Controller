@@ -14,7 +14,7 @@
 			  		  <th>No</th>
 					<tr>    
 <td colspan="5"  class="success text-center" >No</td>
-<td  colspan="5" class="text-center success">Nama Kelas</td>
+<td  colspan="5" class="text-center success">@sortablelink('nama_kelas')</td>
 <td  colspan="5" class="text-center success">Nama Jurusan</td>
 					</tr>
 				  	</thead>

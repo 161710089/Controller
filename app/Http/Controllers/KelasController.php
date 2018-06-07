@@ -14,7 +14,7 @@ class KelasController extends Controller
      */
      public function index()
     {
-            $kelas = kelas::with('jurusan')->get();
+            $kelas = kelas::sortable()->with('jurusan')->get();
         return view('kelas.index',compact('kelas'));
         
     }
@@ -75,7 +75,8 @@ class KelasController extends Controller
 
         $kelas = kelas::findOrFail($id);
         $jurusan = jurusan::all();
-        return view('kelas.edit',compact('jurusan','kelas'));
+        $selectjurusan = kelas::findOrFail($kelas->id)->id_jurusan;
+        return view('kelas.edit',compact('jurusan','kelas','selectjurusan'));
     }
 
     /**

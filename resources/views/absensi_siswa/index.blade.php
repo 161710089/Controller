@@ -15,7 +15,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
- 
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" ></script>
 </head>
 
 <body>
@@ -24,46 +24,47 @@
                        
                              @php $no = 1; @endphp
                         @foreach($absensi_siswa as $data)
-                            {{ $data->siswa->Nama }}|{{ $data->kelas->nama_kelas }}| 
                             {{ Auth::user()->name }}                        
-                      @endforeach
+                      @endforeach    
                         </div>
-
+<hr>
+<div class="row">
+    <div class="col-md-4">
+     {!! Form::label('kelas','pilih kelas') !!}   
+     {!! Form::select('id', $kelas ,null,array ('id'=>'kelas','class' => 'form-control')) !!}   
+        
+    </div>
+</div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
                   
-                            <div class="well">
-                                <h4 class="text-center">2017</h4>
-                            </div>
-                                <table class="table table-striped table-bordered table-hover">
+                                <table  class="table table-striped table-bordered table-hover">
   
                                         
 
 
 <tr>
-<td colspan="11" class="text-center info">July</td>
-</tr>
-<tr>
-    
-<td class="success text-center" >Tanggal</td>
+<td colspan="5">kelas</td>    
+<td colspan="5">kelas</td>
 <td  colspan="5" class="text-center success">Keterangan</td>
 <td  colspan="5" class="text-center success">Petugas Piket</td>
 
 </tr>
                         
 <tr>
-                        @php $no = 1; @endphp
+    <tbody id="absensi_siswa">
+        
                         @foreach($absensi_siswa as $data)
-    <td class="text-center">{{ $data->tanggal }}</td>
-
-
+<td colspan="5" class="text-center">{{ $data->id_siswa }}</td>
+<td colspan="5" class="text-center">{{ $data->id_kelas }}</td>
 <td colspan="5" class="text-center">{{ $data->keterangan }}</td>
 <td colspan="5" class="text-center">{{ $data->petugas_piket->nama_petugas }}</td>
 </tr>
 
    @endforeach  
-                  
+        
+    </tbody>          
                                 </table>
 
                             </div>
@@ -88,6 +89,23 @@
                     <!-- /.panel -->
       
     <!-- Core Scripts - Include with every page -->
+    <script type="text/javascript">
+        $(document).ready (function (){
+            $('#kelas').on('change', function(e){
+        var id = e.target.value;
+        $.get('{{ url('kelas')}}/'+id, function(data){
+            console.log(id);
+            console.log(data);
+            $('#absensi_siswa').empty();
+            $.each(data, function(index, element){
+                $('#absensi_siswa').append("<tr><td colspan>"+element.id+"</td><td>"
+                    +element.id_kelas+"</td><td>"+element.nama_kelas+"</td><td>"+element.keterangan+"</td><td>"+element.id_PetugasPiket+"</td></tr>");
+            });
+        
+        });
+        });
+    });
+    </script>
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>

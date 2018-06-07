@@ -27,7 +27,9 @@ class LaporanAbsensiSiswaController extends Controller
         $kelas = new kelas;
         $petugas_piket = new petugas_piket;
         $siswa = new siswa;
-        return view('laporan_absensi_siswa.create',compact('petugas_piket','siswa','kelas'));
+        $laporan_absensi_siswa = absensi_siswa::with('siswa','petugas_piket','kelas')->get();
+
+        return view('laporan_absensi_siswa.create',compact('petugas_piket','siswa','kelas','laporan_absensi_siswa'));
     }    /**
      * Store a newly created resource in storage.
      *

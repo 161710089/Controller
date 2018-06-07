@@ -75,7 +75,7 @@
                                     <a href="{{ route('laporan_absensi_siswa.create') }}">Register</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('laporan_absensi_siswa.index') }}">Forget Password</a>
+                                    <a href="{{ route('absensi_siswa.index') }}">Forget Password</a>
                                 </li>
                             </ul>
                         </li>
