@@ -17,19 +17,27 @@ class AbsensiSiswaController extends Controller
      */
    public function index()
     {
-            $absensi_siswa = absensi_siswa::with('siswa','petugas_piket','kelas')->get();
+            $absensi_siswa = absensi_siswa::sortable()->with('siswa','petugas_piket','kelas')->get();
             $kelas =kelas::pluck('nama_kelas','id');
         return view('absensi_siswa.index',compact('absensi_siswa','kelas'));
     
     }
-public function kelasAjax($id){
-    if ($id==0) {
-        $absensi_siswa = absensi_siswa::all();
-    }else{
-        $absensi_siswa = absensi_siswa::where('id_kelas','=',$id)->get();
+
+    public function absen()
+    {
+            $absensi_siswa = absensi_siswa::sortable()->with('siswa','petugas_piket','kelas')->get();
+            $kelas =kelas::pluck('nama_kelas','id');
+        return view('member.absen',compact('absensi_siswa','kelas'));
+    
     }
-    return $absensi_siswa;
-}
+// public function kelasAjax($id){
+//     if ($id==0) {
+//         $absensi_siswa = absensi_siswa::all();
+//     }else{
+//         $absensi_siswa = absensi_siswa::where('id_kelas','=',$id)->get();
+//     }
+//     return $absensi_siswa;
+// }
    
     /**
      * Show the form for creating a new resource.
@@ -37,14 +45,12 @@ public function kelasAjax($id){
      * @return \Illuminate\Http\Response
      */
    public function create()
- {
-         $petugas_piket = new petugas_piket;
-        $siswa = new siswa;
-        $absensi_siswa = absensi_siswa::with('siswa','petugas_piket','kelas')->get();
-
-        $siswas = siswa::with('kelas')->get();
-      
-        return view('absensi_siswa.create',compact('petugas_piket','siswa','kelas','absensi_siswa','siswas'));
+    {
+        $absensi_siswa = absensi_siswa::all();
+        $siswa = siswa::all();
+        $kelas =kelas::all();
+        $petugas_piket =petugas_piket::all();
+        return view('absensi_siswa.create',compact('absensisiswa', 'siswa','kelas','petugas_piket'));
     }    /**
      * Store a newly created resource in storage.
      *
@@ -90,16 +96,17 @@ public function kelasAjax($id){
      * @param  \App\absensi_siswa  $absensi_siswa
      * @return \Illuminate\Http\Response
      */
-   public function edit($id)
+   public function edit(absensi_siswa $absensi_siswa)
     {
-        // memanggil data absensi_siswa berdasrkan id di halaman absensi_siswa edit
-        $absensi_siswa = absensi_siswa::findOrFail($id);
-        $kelas = kelas::all();
+        $absensi_siswa = absensi_siswa::findOrFail($absensi_siswa->id);
+        $petugas_piket = petugas_piket::all();
+        $selectpetugaspiket = absensi_siswa::findOrFail($absensi_siswa->id)->id_PetugasPiket;
         $siswa = siswa::all();
-        $new = new absensi_siswa;
-        $PetugasPiket = petugas_piket::all();
-     
-        return view('absensi_siswa.edit',compact('absensi_siswa','kelas','siswa','PetugasPiket'));
+        $selectsiswa = absensi_siswa::findOrFail($absensi_siswa->id)->id_siswa;
+        $kelas = kelas::all();
+        $selectkelas = absensi_siswa::findOrFail($absensi_siswa->id)->id_kelas;
+      
+        return view('absensi_siswa.edit',compact('siswa','absensi_siswa','selectsiswa','petugas_piket','selectpetugaspiket','kelas','selectkelas'));
     }
 
     /**
@@ -112,15 +119,20 @@ public function kelasAjax($id){
     public function update(Request $request,$id)
     {
          $this->validate($request,[
-            'tanggal' => 'required|max:255',
-            'keterangan' => 'required|max:255',
-            ]);
+              'id_siswa'=>'required|max:255',
+            'id_kelas'=>'required|max:255',
+            'tanggal'=>'required|min:1',
+            'keterangan'=>'required',
+            'id_PetugasPiket'=>'required|max:255',
+          ]);
 
         $absensi_siswa =absensi_siswa::findOrFail($id);
-        $new =new absensi_siswa;
+        $absensi_siswa->id_siswa = $request->id_siswa;
+        $absensi_siswa->id_kelas = $request->id_kelas;
         $absensi_siswa->tanggal = $request->tanggal;
-        $absensi_siswa->keterangan    = $request->keterangan   ; 
-        // dd($absensi_siswa);
+        $absensi_siswa->keterangan = $request->keterangan;
+        $absensi_siswa->id_PetugasPiket = $request->id_PetugasPiket;
+          // dd($absensi_siswa);
         $absensi_siswa->save();
         return redirect()->route('absensi_siswa.index');    }
 

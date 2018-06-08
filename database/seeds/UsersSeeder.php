@@ -21,26 +21,37 @@ class UsersSeeder extends Seeder
       
 
       //membuat role member
-     	$memberRole =new Role();	
+     	  $memberRole =new Role();	
       	$memberRole ->name ="member";
       	$memberRole ->display_name ="Member";
       	$memberRole ->save();
-             
+
+        $petugasRole =new Role();
+        $petugasRole ->name ="petugas";
+        $petugasRole ->display_name ="Petugas";
+        $petugasRole ->save();
+                   
     	
-    	$Admin =new User();	
+    	  $Admin =new User();	
       	$Admin ->name ="Admin";
       	$Admin ->email ="Admin@gmail.com";
       	$Admin ->password =bcrypt('rahasia');
       	$Admin ->save();
-		$Admin ->attachRole($adminRole);
+		    $Admin ->attachRole($adminRole);
           
         $member =new User();	
       	$member ->name ="sample member";
       	$member ->email ="member@gmail.com";
       	$member ->password =bcrypt('rahasia');
-		$member ->save();
-		$member ->attachRole($memberRole);
+		    $member ->save();
+		    $member ->attachRole($memberRole);
             
-
+        $petugas =new User();  
+        $petugas ->name ="sample petugas";
+        $petugas ->email ="petugas@gmail.com";
+        $petugas ->password =bcrypt('rahasia');
+        $petugas ->save();
+        $petugas ->attachRole($petugasRole);
+        
     }
 }

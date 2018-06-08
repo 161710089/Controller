@@ -3,11 +3,19 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class absensi_siswa extends Model
 {
+
+
     protected $table = 'absensi_siswas';
-protected $fillable = array('id_siswa', 'tanggal', 'keterangan','id_PetugasPiket');
+
+	use Sortable;
+
+protected $fillable = array('id_siswa','id_kelas', 'tanggal', 'keterangan','id_PetugasPiket');
+protected $sortable = array('id_siswa', 'id_kelas','tanggal','keterangan','id_PetugasPiket');
+
 public $timestamp = true;
 
 

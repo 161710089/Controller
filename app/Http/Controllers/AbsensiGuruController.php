@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\absensi_guru;
 use App\guru;
-class Absensi_GuruController extends Controller
+use App\petugas_piket;
+
+class AbsensiGuruController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,7 +30,9 @@ class Absensi_GuruController extends Controller
     {
         $absensi_guru = absensi_guru::all();
         $guru = guru::all();
-        return view('absensi_guru.create',compact('absensi_guru', 'guru'));
+        $petugas_piket = petugas_piket::all();
+        
+        return view('absensi_guru.create',compact('absensi_guru', 'guru','petugas_piket'));
     }
 
     /**
@@ -42,13 +46,17 @@ class Absensi_GuruController extends Controller
          $request->validate([
             
             'id_guru' => 'required',
-            'keterangan'=>'required|min:2',
-
+            'tanggal' => 'required',
+            'keterangan'=>'required',
+            'id_PetugasPiket' => 'required',
+            
         ]);
 
         $absensi_guru = new absensi_guru;
         $absensi_guru->id_guru = $request->id_guru;
+        $absensi_guru->tanggal = $request->tanggal;
         $absensi_guru->keterangan = $request->keterangan;
+        $absensi_guru->id_PetugasPiket =$request->id_PetugasPiket;
         $absensi_guru->save();
         return redirect()->route('absensi_guru.index');
     }
@@ -71,12 +79,14 @@ class Absensi_GuruController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(absensi_guru $absensi_guru)
     {
-        $absensi_guru = absensi_guru::findOrFail($id);
+        $absensi_guru = absensi_guru::findOrFail($absensi_guru->id);
+        $petugas_piket = petugas_piket::all();
+        $selectpetugaspiket = absensi_guru::findOrFail($absensi_guru->id)->id_PetugasPiket;
         $guru = guru::all();
-        $selectedguru = guru::findOrFail($id)->id_guru;
-        return view('absensi_guru.edit',compact('guru','absensi_guru','selectedguru'));
+        $selectguru = absensi_guru::findOrFail($absensi_guru->id)->id_guru;
+        return view('absensi_guru.edit',compact('guru','absensi_guru','selectguru','petugas_piket','selectpetugaspiket'));
     }
 
     /**
@@ -91,12 +101,18 @@ class Absensi_GuruController extends Controller
          $this->validate($request, [
         
             'id_guru'=>'required|max:255',
-            'keterangan'=>'required|min:2',
+            'tanggal'=>'required|min:1',
+            'keterangan'=>'required',
+            'id_PetugasPiket'=>'required|max:255',
+            
         ]);
 
         $absensi_guru = absensi_guru::findOrFail($id);
         $absensi_guru->id_guru = $request->id_guru;
+        $absensi_guru->tanggal = $request->tanggal;
         $absensi_guru->keterangan = $request->keterangan;
+        $absensi_guru->id_PetugasPiket = $request->id_PetugasPiket;
+        
         $absensi_guru->save();
         return redirect()->route('absensi_guru.index');
     }

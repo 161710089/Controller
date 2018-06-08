@@ -4,46 +4,31 @@
 	<div class="container">
 		<div class="col-md-12">
 			<div class="panel panel-primary">
-			  <div class="panel-heading">Absen Siswa 
+			  <div class="panel-heading">Edit Absen Guru 
 			  	<div class="panel-title pull-right"><a href="{{ url()->previous() }}">Kembali</a>
 			  	</div>
 			  </div>
 			  <div class="panel-body">
-			  	<form action="{{ route('absensi_siswa.store') }}" method="post" >
+			  	<form action="{{ route('absensi_guru.update',$absensi_guru->id) }}" method="post" >
 			  		<input name="_method" type="hidden" value="PATCH">
 			  		{{ csrf_field() }}
-			  		
-			  	<div class="form-group {{ $errors->has('id_siswa') ? ' has-error' : '' }}">
-			  			<label class="control-label">Nama siswa</label>	
-			  		<select name="id_siswa" class="form-control">
-			  					@foreach($siswa as $data)
-			  						<option value="{{ $data->id }}" {{$selectsiswa == $data->id ? 'selected="selected"':'' 
+
+			  		<div class="form-group {{ $errors->has('id_guru') ? ' has-error' : '' }}">
+			  			<label class="control-label">Nama Guru</label>	
+			  		<select name="id_guru" class="form-control">
+			  					@foreach($guru as $data)
+			  						<option value="{{ $data->id }}" {{$selectguru == $data->id ? 'selected="selected"':'' 
 			  					}}>{{ $data->Nama }}</option>
 			  				@endforeach
 			  			</select>
-			  						@if ($errors->has('id_siswa'))
+			  						@if ($errors->has('id_guru'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('id_siswa') }}</strong>
+                                <strong>{{ $errors->first('id_guru') }}</strong>
                             </span>
                         @endif
 			  		</div>
-			  	
-			  	<div class="form-group {{ $errors->has('id_kelas') ? ' has-error' : '' }}">
-			  			<label class="control-label">Nama kelas</label>	
-			  		<select name="id_kelas" class="form-control">
-			  					@foreach($kelas as $data)
-			  						<option value="{{ $data->id }}" {{$selectkelas == $data->id ? 'selected="selected"':'' 
-			  					}}>{{ $data->nama_kelas }}</option>
-			  				@endforeach
-			  			</select>
-			  						@if ($errors->has('id_kelas'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('id_kelas') }}</strong>
-                            </span>
-                        @endif
-			  		</div>
-			  					  		
-
+			  		
+							  		
 			  		<div class="form-group {{ $errors->has('tanggal') ? ' has-error' : '' }}">
 			  			<label class="control-label">tanggal</label>	
 			  			<input type="date" name="tanggal" class="form-control" required>
@@ -55,16 +40,16 @@
 			  		</div>
 			  		
 								<label class="control-label">keterangan</label><br>
-								<input type="radio" class="radio-control" name="keterangan" value="Hadir"{{ $absensi_siswa->keterangan == 'Hadir' ? 'checked' : '' }} >Hadir&nbsp&nbsp
-								<input type="radio" class="radio-control" name="keterangan" value="Izin" {{ $absensi_siswa->keterangan == 'Izin' ? 'checked' : '' }}>Izin&nbsp&nbsp
-								<input type="radio" class="radio-control" name="keterangan"  value="Sakit" {{ $absensi_siswa->keterangan == 'Sakit' ? 'checked' : '' }}>Sakit&nbsp&nbsp
-								<input type="radio" class="radio-control" name="keterangan"  value="Alfa" {{ $absensi_siswa->keterangan == 'Alfa' ? 'checked' : '' }}>Alfa
+								<input type="radio" class="radio-control" name="keterangan" value="M"{{ $absensi_guru->keterangan == 'M' ? 'checked' : '' }} >M&nbsp&nbsp
+								<input type="radio" class="radio-control" name="keterangan" value="I" {{ $absensi_guru->keterangan == 'I' ? 'checked' : '' }}>I&nbsp&nbsp
+								<input type="radio" class="radio-control" name="keterangan"  value="S" {{ $absensi_guru->keterangan == 'S' ? 'checked' : '' }}>S&nbsp&nbsp
+								<input type="radio" class="radio-control" name="keterangan"  value="A" {{ $absensi_guru->keterangan == 'A' ? 'checked' : '' }}>A
 								@if ($errors->has('keterangan'))
 									<span class="help-blocks">
 										<strong>{{$errors->first('keterangan')}}</strong>
 									</span>
 								@endif
-						
+							
 			  		                   
 			  		<div class="form-group {{ $errors->has('id_PetugasPiket') ? ' has-error' : '' }}">
 			  			<label class="control-label"> Petugas Piket</label>	

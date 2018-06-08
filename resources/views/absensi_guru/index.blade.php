@@ -1,4 +1,7 @@
-@extends('layouts.admin')
+
+
+
+ @extends('layouts.admin')
 @section('content')
 
 <!DOCTYPE html>
@@ -15,52 +18,62 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
- 
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" ></script>
 </head>
 
 <body>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                        
-                            {{ Auth::user()->name }} |{{ Auth::user()->name }}| 
-                            {{ Auth::user()->name }}                        
                         </div>
-
+</div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
                   
-                            <div class="well">
-                                <h4 class="text-center">2017</h4>
-                            </div>
-                                <table class="table table-striped table-bordered table-hover">
+                                <table  class="table table-striped table-bordered table-hover">
   
                                         
 
 
 <tr>
-<td colspan="11" class="text-center info">July</td>
-</tr>
-<tr>
-    
-<td class="success text-center" >Tanggal</td>
-<td  colspan="5" class="text-center success">Keterangan</td>
-<td  colspan="5" class="text-center success">Petugas Piket</td>
+<td colspan="5" class="text-center success">no</td>    
+<td colspan="5" class="text-center success">@sortablelink('tanggal')</td>    
+<td  colspan="5" class="text-center success">@sortablelink('id_siswa')</td>
+<td  colspan="5" class="text-center success">@sortablelink('keterangan')</td>
+<td  colspan="5" class="text-center success">@sortablelink('id_PetugasPiket')</td>
+<td  colspan="5" class="text-center success">Action</td>
 
 </tr>
                         
 <tr>
+    <tbody id="absensi_siswa">
                         @php $no = 1; @endphp
+                     
                         @foreach($absensi_guru as $data)
-    <td class="text-center">{{ $data->tanggal }}</td>
-
-
+<td colspan="5" class="text-center success">{{ $no++ }}</td>
+<td colspan="5" class="text-center">{{ $data->tanggal }}</td>
+<td colspan="5" class="text-center">{{ $data->guru->Nama }}</td>
 <td colspan="5" class="text-center">{{ $data->keterangan }}</td>
 <td colspan="5" class="text-center">{{ $data->petugas_piket->nama_petugas }}</td>
+                        <td>
+                            <a class="btn btn-warning" href="{{ route('absensi_guru.edit',$data->id) }}">Edit</a>
+                        </td>
+                        <td>
+                            <form method="post" action="{{ route('absensi_guru.destroy',$data->id) }}">
+                                <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                                <input type="hidden" name="_method" value="DELETE">
+
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                     
+                        
 </tr>
 
    @endforeach  
-                  
+        
+    </tbody>          
                                 </table>
 
                             </div>
@@ -84,7 +97,6 @@
                     </div>
                     <!-- /.panel -->
       
-    <!-- Core Scripts - Include with every page -->
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>

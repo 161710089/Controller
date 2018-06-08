@@ -9,22 +9,27 @@ ed@extends('layouts.app')
 			  	</div>
 			  </div>
 			  <div class="panel-body">
-			  	<form action="{{ route('laporan_absensi_siswa.update',$laporan_absensi_siswa->id) }}" method="post" >
+			  	<form action="{{ route('laporan_absensi_siswa.store') }}" method="post" >
 			  		<input name="_method" type="hidden" value="PATCH">
 			  		{{ csrf_field() }}
 			  		
 			  		<div class="form-group {{ $errors->has('id_siswa') ? ' has-error' : '' }}">
-			  			<label class="control-label">Nama siswa</label>	
-			  				@foreach($siswa as $data)
-			  				<input type="text" name="id_siswa" value="{{ $data->id }}" readonly>
-			  				@endforeach
-			  				@if ($errors->has('id_siswa'))
+			  			<label class="control-label">Nama Siswa</label>	
+			  			<select  name="id_siswa" class="form-control" >
+			  			<option>Pilih Jurusan</option>
+			  			
+			  			@foreach($siswa as $data)
+			  			<option value="{{ $data->id}}">{{ $data->Nama}}</option>
+			  			@endforeach
+			  		
+			  			</select>
+			  			@if ($errors->has('id_siswa'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('id_siswa') }}</strong>
                             </span>
                         @endif
 			  		</div>
-
+			  		
 					<div class="form-group {{ $errors->has('id_kelas') ? ' has-error' : '' }}">
 			  			<label class="control-label">Nama kelas</label>	
 			  				@foreach($kelas as $data)
@@ -36,7 +41,8 @@ ed@extends('layouts.app')
                             </span>
                         @endif
 			  		</div>
-			  				  		
+			  			
+			  		  		
 
 			  		<div class="form-group {{ $errors->has('tanggal') ? ' has-error' : '' }}">
 			  			<label class="control-label">tanggal</label>	

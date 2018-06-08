@@ -1,7 +1,8 @@
 
 
 
- @extends('layouts.admin')
+
+ @extends('layouts.member')
 @section('content')
 
 <!DOCTYPE html>
@@ -51,7 +52,6 @@
 <td colspan="5" class="text-center success">@sortablelink('id_kelas')</td>    
 <td  colspan="5" class="text-center success">@sortablelink('keterangan')</td>
 <td  colspan="5" class="text-center success">@sortablelink('id_PetugasPiket')</td>
-<td  colspan="5" class="text-center success">Action</td>
 
 </tr>
                         
@@ -66,17 +66,6 @@
 <td colspan="5" class="text-center">{{ $data->kelas->nama_kelas }}</td>
 <td colspan="5" class="text-center">{{ $data->keterangan }}</td>
 <td colspan="5" class="text-center">{{ $data->petugas_piket->nama_petugas }}</td>
- <td>
-                            <a class="btn btn-warning" href="{{ route('absensi_siswa.edit',$data->id) }}">Edit</a>
-                        </td>
-                       <td>
-                            <form method="post" action="{{ route('absensi_siswa.destroy',$data->id) }}">
-                                <input name="_token" type="hidden" value="{{ csrf_token() }}">
-                                <input type="hidden" name="_method" value="DELETE">
-
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
                      
 </tr>
 

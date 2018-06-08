@@ -4,48 +4,31 @@
 		<div class="container">
 			<div class="col-md-12">
 				<div class="panel panel-primary">
-					<div class="panel-heading">Absensi Siswa
+					<div class="panel-heading">Absensi Guru
 					<div class="panel-title pull-right">
-						<a href="{{route('absensi_siswa.index')}}">Kembali</a>
+						<a class="btn btn-primary" href="{{route('absensi_guru.index')}}">Kembali</a>
 					</div>
 					</div>
 					<div class="panel-body">
-						<form action="{{route('absensi_siswa.store')}}" method="post">
+						<form action="{{route('absensi_guru.store')}}" method="post">
 							{{csrf_field()}}
 
-					<div class="form-group {{ $errors->has('id_siswa') ? ' has-error' : '' }}">
-			  					<label class="control-label">Nama Siswa </label>	
-			  					<select name="id_siswa" class="form-control">
-			  					<option>Pilih Siswa</option>
-			  					@foreach($siswa as $data)
-			  						<option value="{{ $data->id }}">{{ $data->Nama }}</option>
+					<div class="form-group {{ $errors->has('id_guru') ? ' has-error' : '' }}">
+			  			<label class="control-label">Nama </label>	
+			  			<select name="id_guru" class="form-control">
+			  				<option>Pilih Guru</option>
+			  				@foreach($guru as $data)
+			  				<option value="{{ $data->id }}">{{ $data->Nama }}</option>
 			  				@endforeach
 			  			</select>
-			  			@if ($errors->has('id_siswas'))
+			  			@if ($errors->has('id_guru'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('id_siswas') }}</strong>
+                                <strong>{{ $errors->first('id_guru') }}</strong>
                             </span>
                         @endif
 			  		</div>
-					
 
-					<div class="form-group {{ $errors->has('id_kelas') ? ' has-error' : '' }}">
-			  					<label class="control-label">Nama Kelas </label>	
-			  					<select name="id_kelas" class="form-control">
-			  					<option>Pilih Kelas</option>
-			  					@foreach($kelas as $data)
-			  						<option value="{{ $data->id }}">{{ $data->nama_kelas }}</option>
-			  				@endforeach
-			  			</select>
-			  			@if ($errors->has('id_kelas'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('id_kelas') }}</strong>
-                            </span>
-                        @endif
-			  		</div>
-					
-
-					<div class="form-group {{$errors->has('tanggal') ? 'has-error' : ''}}">
+								<div class="form-group {{$errors->has('tanggal') ? 'has-error' : ''}}">
 								<label class="control-label">Tanggal</label>
 								<input type="date" class="form-control" name="tanggal" required>
 								@if ($errors->has('tanggal'))
@@ -57,10 +40,10 @@
 
 					<div class="form-group {{$errors->has('keterangan') ? 'has-error' : ''}}">
 								<label class="control-label">keterangan</label><br>
-								<input type="radio" class="radio-control" name="keterangan" value="Hadir">Hadir&nbsp&nbsp
-								<input type="radio" class="radio-control" name="keterangan" value="Izin">Izin&nbsp&nbsp
-								<input type="radio" class="radio-control" name="keterangan"  value="Sakit">Sakit&nbsp&nbsp
-								<input type="radio" class="radio-control" name="keterangan"  value="Alfa">Alfa
+								<input type="radio" class="radio-control" name="keterangan" value="M">A&nbsp&nbsp
+								<input type="radio" class="radio-control" name="keterangan" value="I">I&nbsp&nbsp
+								<input type="radio" class="radio-control" name="keterangan"  value="S">S&nbsp&nbsp
+								<input type="radio" class="radio-control" name="keterangan"  value="A">A
 								@if ($errors->has('keterangan'))
 									<span class="help-blocks">
 										<strong>{{$errors->first('keterangan')}}</strong>
@@ -82,8 +65,8 @@
                             </span>
                         @endif
 			  		</div>
-							
-
+		
+					
 							<div class="form-group">
 								<button type="submit" class="btn btn-primary">Tambah</button>
 							</div>

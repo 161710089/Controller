@@ -13,10 +13,18 @@ class LaporanAbsensiSiswaController extends Controller
     public function index()
     {
             $laporan_absensi_siswa = absensi_siswa::with('siswa','petugas_piket','kelas')->get();
-        return view('laporan_absensi_siswa.index',compact('absensi_siswa'));
+            $kelas =kelas::pluck('nama_kelas','id');
+        return view('laporan_absensi_siswa.index',compact('laporan_absensi_siswa','kelas'));
     
     }
-
+public function kelasAjax($id){
+    if ($id==0) {
+        $laporan_absensi_siswa = absensi_siswa::all();
+    }else{
+        $laporan_absensi_siswa = absensi_siswa::where('id_kelas','=',$id)->get();
+    }
+    return $laporan_absensi_siswa;
+}
     /**
      * Show the form for creating a new resource.
      *

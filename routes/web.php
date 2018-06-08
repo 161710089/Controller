@@ -48,6 +48,14 @@ Auth::routes();
 
 Route::get('/kelas/{id}', 'AbsensiSiswaController@kelasAjax');
 
+Route::group(['prefix'=>'member' ,'middleware'=>['auth','role:member']], 
+	function (){
+
+Route::get('/absen', 'AbsensiSiswaController@absen');
+Route::get('/siswa', 'SiswaController@siswa');
+Route::get('/index', 'AbsensiSiswaController@index');
+Route::get('/index', 'AbsensiSiswaController@index');
+});
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix'=>'admin' ,'middleware'=>['auth','role:admin']], 
@@ -56,6 +64,10 @@ Route::group(['prefix'=>'admin' ,'middleware'=>['auth','role:admin']],
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/temp',function(){
+		return view('absensi_siswa.template');
+	});
+
 
 Route::resource('laporan_absensi_siswa','LaporanAbsensiSiswaController');
 Route::resource('absensi_siswa','AbsensiSiswaController');

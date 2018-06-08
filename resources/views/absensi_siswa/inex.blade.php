@@ -1,7 +1,5 @@
-
-
-
- @extends('layouts.admin')
+Indek
+{{-- @extends('layouts.admin')
 @section('content')
 
 <!DOCTYPE html>
@@ -25,12 +23,15 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                        
-                             {{ Auth::user()->name }}                        
+                             @php $no = 1; @endphp
+                        @foreach($absensi_siswa as $data)
+                            {{ Auth::user()->name }}                        
+                      @endforeach    
                         </div>
 <hr>
 <div class="row">
     <div class="col-md-4">
-     {!! Form::label('tanggal','pilih kelas') !!}   
+     {!! Form::label('kelas','pilih kelas') !!}   
      {!! Form::select('id', $kelas ,null,array ('id'=>'kelas','class' => 'form-control')) !!}   
         
     </div>
@@ -45,39 +46,19 @@
 
 
 <tr>
-<td colspan="5" class="text-center success">no</td>    
-<td colspan="5" class="text-center success">@sortablelink('tanggal')</td>    
-<td  colspan="5" class="text-center success">@sortablelink('id_siswa')</td>
-<td colspan="5" class="text-center success">@sortablelink('id_kelas')</td>    
-<td  colspan="5" class="text-center success">@sortablelink('keterangan')</td>
-<td  colspan="5" class="text-center success">@sortablelink('id_PetugasPiket')</td>
-<td  colspan="5" class="text-center success">Action</td>
+<td colspan="5">siswa</td>    
+<td  colspan="5" class="text-center success">Keterangan</td>
+<td  colspan="5" class="text-center success">Petugas Piket</td>
 
 </tr>
                         
 <tr>
     <tbody id="absensi_siswa">
-                           @php $no = 1; @endphp
-                     
+        
                         @foreach($absensi_siswa as $data)
-<td colspan="5" class="text-center success">{{ $no++ }}</td>
-<td colspan="5" class="text-center">{{ $data->tanggal }}</td>
-<td colspan="5" class="text-center">{{ $data->siswa->Nama }}</td>
-<td colspan="5" class="text-center">{{ $data->kelas->nama_kelas }}</td>
+<td colspan="5" class="text-center">{{ $data->id_siswa }}</td>
 <td colspan="5" class="text-center">{{ $data->keterangan }}</td>
 <td colspan="5" class="text-center">{{ $data->petugas_piket->nama_petugas }}</td>
- <td>
-                            <a class="btn btn-warning" href="{{ route('absensi_siswa.edit',$data->id) }}">Edit</a>
-                        </td>
-                       <td>
-                            <form method="post" action="{{ route('absensi_siswa.destroy',$data->id) }}">
-                                <input name="_token" type="hidden" value="{{ csrf_token() }}">
-                                <input type="hidden" name="_method" value="DELETE">
-
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
-                     
 </tr>
 
    @endforeach  
@@ -147,3 +128,4 @@
 </html>
 
 @endsection
+ --}}

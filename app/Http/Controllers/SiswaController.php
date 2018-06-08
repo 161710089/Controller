@@ -19,6 +19,12 @@ class SiswaController extends Controller
          
     }
 
+public function siswa()
+    {
+            $siswa = siswa::with('kelas')->get();
+        return view('member.siswa',compact('siswa'));
+         
+    }
     /**
      * Show the form for creating a new resource.
      *

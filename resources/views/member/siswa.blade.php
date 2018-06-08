@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.member')
 @section('content')
 <div class="row">
     <div class="container">
@@ -36,29 +36,10 @@
                         <td colspan="5" class="text-center success">{{ $data->tanggal_lahir }}</td>
                         <td colspan="5" class="text-center success">{{ $data->alamat}}</td>
                     
-                        <td>
-                            <a class="btn btn-warning" href="{{ route('siswa.edit',$data->id) }}">Edit</a>
-                        </td>
-                        <td>
-                            <form method="post" action="{{ route('siswa.destroy',$data->id) }}">
-                                <input name="_token" type="hidden" value="{{ csrf_token() }}">
-                                <input type="hidden" name="_method" value="DELETE">
-
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
                       </tr>
                       @endforeach   
                     </tbody>
                   </table>
-                  <ul id="pagination" class="pagination-sm"></ul>
-
-        <div class="modal fade" id="create-item" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            </div>
-          </div>
-        </div>
                 </div>
               </div>
             </div>  
