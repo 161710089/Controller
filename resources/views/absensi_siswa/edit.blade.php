@@ -9,7 +9,7 @@
 			  	</div>
 			  </div>
 			  <div class="panel-body">
-			  	<form action="{{ route('absensi_siswa.store') }}" method="post" >
+			  	<form action="{{ route('absensi_siswa.update',$absensi_siswa->id) }}" method="post" >
 			  		<input name="_method" type="hidden" value="PATCH">
 			  		{{ csrf_field() }}
 			  		
@@ -46,7 +46,7 @@
 
 			  		<div class="form-group {{ $errors->has('tanggal') ? ' has-error' : '' }}">
 			  			<label class="control-label">tanggal</label>	
-			  			<input type="date" name="tanggal" class="form-control" required>
+			  			<input type="date" name="tanggal" value="{{ $absensi_siswa->tanggal }}" class="form-control"  required>
 			  			@if ($errors->has('tanggal'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('tanggal') }}</strong>

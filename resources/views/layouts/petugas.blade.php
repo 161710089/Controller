@@ -41,7 +41,7 @@
     @include('partials.hd-mobile')
         <!-- END HEADER MOBILE-->
         <!-- MENU SIDEBAR-->
-    @include('partials.sidebar')
+    @include('partials.sidebarpetugas')
         
         <!-- END MENU SIDEBAR-->
 

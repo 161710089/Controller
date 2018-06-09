@@ -64,32 +64,21 @@
                                 </li>
                                 </ul>
                         
-                        <li class="has-sub">
+                    <ul class="list-unstyled navbar__list">
+                        <li class="active has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Absen Siswa</a>
+                                <i class="fas fa-tachometer-alt"></i>Data Jurusan</a>
+                        
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="{{ route('absensi_siswa.create') }}" data-toggle="modal" data-target="#create-item">input Absen siswa</a>
+                                    <a href="">Input Data </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('absensi_siswa.index') }}">View Data Absen</a>
+                                    <a href="">View Data </a>
                                 </li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-desktop"></i>Absen Guru</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="{{ route('absensi_guru.create') }}">Input absen guru</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('absensi_guru.index') }}">View Data Absen</a>
-                                </li>
-                                
-                            </ul>
-                        </li>
-      
+                                </ul>
+                    
+
       <ul id="pagination" class="pagination-sm"></ul>
 
         <div class="modal fade" id="create-item" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

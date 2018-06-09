@@ -1,9 +1,42 @@
 
 
 
- @extends('layouts.admin')
+ @extends('layouts.petugas')
 @section('content')
+<style type="text/css">
+    #myInput {
+    background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 30%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+}
 
+#myTable {
+    border-collapse: collapse; /* Collapse borders */
+    width: 100%; /* Full-width */
+    border: 1px solid #ddd; /* Add a grey border */
+    font-size: 18px; /* Increase font-size */
+}
+
+#myTable th, #myTable td {
+    text-align: left; /* Left-align text */
+    padding: 12px; /* Add padding */
+}
+
+#myTable tr {
+    /* Add a bottom border to all table rows */
+    border-bottom: 1px solid #ddd; 
+}
+
+#myTable tr.header, #myTable tr:hover {
+    /* Add a grey background color to the table header and on hover */
+    background-color: #f1f1f1;
+}
+</style>
 <!DOCTYPE html>
 <html>
 
@@ -18,7 +51,9 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
+
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" ></script>
+
 </head>
 
 <body>
@@ -27,6 +62,31 @@
                        
                              {{ Auth::user()->name }}                        
                         </div>
+<script>
+function myFunction() {
+  // Declare variables 
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[3];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
+}
+</script>
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+
+
 <hr>
 <div class="row">
     <div class="col-md-4">
@@ -39,7 +99,7 @@
                         <div class="panel-body">
                             <div class="table-responsive">
                   
-                                <table  class="table table-striped table-bordered table-hover">
+                                <table  id="myTable"class="table">
   
                                         
 
@@ -67,8 +127,8 @@
 <td colspan="5" class="text-center">{{ $data->keterangan }}</td>
 <td colspan="5" class="text-center">{{ $data->petugas_piket->nama_petugas }}</td>
  <td>
-                            <a class="btn btn-warning" href="{{ route('absensi_siswa.edit',$data->id) }}">Edit</a>
-                        </td>
+    <a class="btn btn-warning" href="{{ route('absensi_siswa.edit',$data->id) }}">Edit</a>
+</td>
                        <td>
                             <form method="post" action="{{ route('absensi_siswa.destroy',$data->id) }}">
                                 <input name="_token" type="hidden" value="{{ csrf_token() }}">
@@ -107,6 +167,7 @@
                     <!-- /.panel -->
       
     <!-- Core Scripts - Include with every page -->
+   
     <script type="text/javascript">
         $(document).ready (function (){
             $('#kelas').on('change', function(e){
@@ -116,8 +177,8 @@
             console.log(data);
             $('#absensi_siswa').empty();
             $.each(data, function(index, element){
-                $('#absensi_siswa').append("<tr><td>"+element.id+"</td><td>"
-                    +element.id_kelas+"</td><td>"+element.nama_kelas+"</td><td>"+element.keterangan+"</td><td>"+element.id_PetugasPiket+"</td></tr>");
+                $('#absensi_siswa').append("<tr colspan='5'><td colspan='5'>"+element.tanggal+"</td><td colspan='5'>"+element.id+"</td><td colspan='5'>"
+                    +element.id_kelas+"</td><td colspan='5'>"+element.nama_kelas+"</td><td colspan='5'>"+element.keterangan+"</td><td colspan='5'>"+element.id_PetugasPiket+"</td></tr>");
             });
         
         });

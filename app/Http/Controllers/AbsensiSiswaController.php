@@ -23,6 +23,25 @@ class AbsensiSiswaController extends Controller
     
     }
 
+// public function search(Request $request)
+//     {       
+//             $input =$request->all();
+            
+//             if($request)->get('search')){
+            
+//             $absensi_siswa = absensi_siswa::where("keterangan","LIKE","%{$request->get(search)}%")->paginate(5)
+//             ->with('kelas','petugas_piket','siswa')->get();
+//             return view('absensi_siswa.index',compact('siswa'));
+           
+//             }else{
+//                 $absensi_siswa=absensi_siswa::paginate(5);
+
+// }
+            
+//     }
+
+
+
     public function absen()
     {
             $absensi_siswa = absensi_siswa::sortable()->with('siswa','petugas_piket','kelas')->get();
@@ -30,14 +49,14 @@ class AbsensiSiswaController extends Controller
         return view('member.absen',compact('absensi_siswa','kelas'));
     
     }
-// public function kelasAjax($id){
-//     if ($id==0) {
-//         $absensi_siswa = absensi_siswa::all();
-//     }else{
-//         $absensi_siswa = absensi_siswa::where('id_kelas','=',$id)->get();
-//     }
-//     return $absensi_siswa;
-// }
+public function kelasAjax($id){
+    if ($id==0) {
+        $absensi_siswa = absensi_siswa::all();
+    }else{
+        $absensi_siswa = absensi_siswa::where('id_kelas','=',$id)->get();
+    }
+    return $absensi_siswa;
+}
    
     /**
      * Show the form for creating a new resource.
@@ -142,6 +161,9 @@ class AbsensiSiswaController extends Controller
      * @param  \App\absensi_siswa  $absensi_siswa
      * @return \Illuminate\Http\Response
      */
+
+
+
     public function destroy($id)
     {
            // delete data beradasarkan id
@@ -150,3 +172,5 @@ class AbsensiSiswaController extends Controller
         return redirect()->route('absensi_siswa.index');      }
 
 }
+
+

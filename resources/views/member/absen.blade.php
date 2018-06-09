@@ -28,6 +28,23 @@
                        
                              {{ Auth::user()->name }}                        
                         </div>
+
+    <div class="col-md-4">
+{!! Form::open(['method'=>'GET','url'=>'caribuku','role'=>'search']) !!}   
+     <div class="input-group custom-search-form">
+<input type="text" class="form-control" name="search" placeholder="Search......">
+<span class="input-group-btn">
+    <span class="input-group-btn">
+        <button class="btn-btn-default" type="submit"><i class="fa fa-search"></i>Cari</button>
+        
+    </span>
+    
+</span>         
+     </div>
+     {!! Form::close() !!}
+</div>
+
+
 <hr>
 <div class="row">
     <div class="col-md-4">

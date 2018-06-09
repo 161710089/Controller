@@ -1,7 +1,7 @@
 
 
 
- @extends('layouts.admin')
+ @extends('layouts.petugas')
 @section('content')
 
 <!DOCTYPE html>

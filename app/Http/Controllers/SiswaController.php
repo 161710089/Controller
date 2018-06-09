@@ -25,6 +25,15 @@ public function siswa()
         return view('member.siswa',compact('siswa'));
          
     }
+
+public function search(Request $request)
+    {       
+            $cari =$request->get('search');
+            $siswa = siswa::where('Nama','LIKE','%'.$cari.'%')->paginate(10)->with('kelas')->get();
+            return view('absensi_siswa.index',compact('siswa'));
+         
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -5,7 +5,7 @@
 <html>
 
 <head>
-
+<title>Tanggal</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -20,6 +20,10 @@
 
     <!-- SB Admin CSS - Include with every page -->
     <link href="css/sb-admin.css" rel="stylesheet">
+<script type="text/javascript" src="development-bundle/jquery-1.3.2.js"></script>
+<script type="text/javascript" src="development-bundle/ui/ui.core.js"></script>
+<script type="text/javascript" src="development-bundle/ui/ui.datapicker.js"></script>
+<script type="text/javascript" src="development-bundle/ui/il8n/ui.datapicker-id.js"></script>
 
 </head>
 

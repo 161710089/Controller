@@ -29,3 +29,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 }
+
+// public function data()
+// {
+//   // Setiap user akan memiliki banyak data
+//   return $this->hasMany('App\Data','user_id');
+// }
