@@ -19,41 +19,27 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
+    <!-- Page-Level Plugin CSS - Tables -->
+    <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- SB Admin CSS - Include with every page -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" ></script>
 </head>
 
 <body>
+                        
                     <div class="panel panel-default">
                         <div class="panel-heading">
                        
-                             {{ Auth::user()->name }}                        
+                             {{ Auth::user()->name }}|
+                        
                         </div>
 
-    <div class="col-md-4">
-{!! Form::open(['method'=>'GET','url'=>'caribuku','role'=>'search']) !!}   
-     <div class="input-group custom-search-form">
-<input type="text" class="form-control" name="search" placeholder="Search......">
-<span class="input-group-btn">
-    <span class="input-group-btn">
-        <button class="btn-btn-default" type="submit"><i class="fa fa-search"></i>Cari</button>
-        
-    </span>
-    
-</span>         
-     </div>
-     {!! Form::close() !!}
-</div>
 
 
-<hr>
-<div class="row">
-    <div class="col-md-4">
-     {!! Form::label('tanggal','pilih kelas') !!}   
-     {!! Form::select('id', $kelas ,null,array ('id'=>'kelas','class' => 'form-control')) !!}   
-        
-    </div>
-</div>
-                        <!-- /.panel-heading -->
+                       <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
                   
@@ -61,26 +47,22 @@
   
                                         
 
-
 <tr>
-<td colspan="5" class="text-center success">no</td>    
-<td colspan="5" class="text-center success">@sortablelink('tanggal')</td>    
-<td  colspan="5" class="text-center success">@sortablelink('id_siswa')</td>
-<td colspan="5" class="text-center success">@sortablelink('id_kelas')</td>    
-<td  colspan="5" class="text-center success">@sortablelink('keterangan')</td>
-<td  colspan="5" class="text-center success">@sortablelink('id_PetugasPiket')</td>
+<td colspan="20" class="text-center info">Absensi</td>
+</tr>
+<tr>
+<td colspan="5" rowspan="2"  class="text-center success">no</td>    
+<td colspan="5" class="text-center success">@sortablelink('tanggal')</td>
+<td colspan="5" class="text-center success">@sortablelink('keterangan')</td><td  colspan="5" class="text-center success">@sortablelink('id_PetugasPiket')</td>
 
 </tr>
                         
 <tr>
     <tbody id="absensi_siswa">
-                           @php $no = 1; @endphp
-                     
-                        @foreach($absensi_siswa as $data)
-<td colspan="5" class="text-center success">{{ $no++ }}</td>
+    @foreach($absensi_siswa as $data)
+    @php $no = 1; @endphp
+<td colspan="5" class="text-center ">{{ $no++ }}</td>
 <td colspan="5" class="text-center">{{ $data->tanggal }}</td>
-<td colspan="5" class="text-center">{{ $data->siswa->Nama }}</td>
-<td colspan="5" class="text-center">{{ $data->kelas->nama_kelas }}</td>
 <td colspan="5" class="text-center">{{ $data->keterangan }}</td>
 <td colspan="5" class="text-center">{{ $data->petugas_piket->nama_petugas }}</td>
                      
@@ -105,7 +87,9 @@
                                 <p>M = Hadir</p>
                                 <p>N = Belum Ada Keterangan Absensi</p>
                                 <p>L = Hari Libur </p>
-
+</div>
+</div>
+</div>
                             </div>
                         </div>
                         <!-- /.panel-body -->

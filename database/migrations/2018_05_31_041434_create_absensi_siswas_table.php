@@ -26,7 +26,11 @@ class CreateAbsensiSiswasTable extends Migration
           
             $table->UnsignedInteger('id_PetugasPiket');
             $table->foreign('id_PetugasPiket')->references('id')->on('Petugas_pikets')->Ondelete('casade');
-        
+         
+            $table->unsignedInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('CASCADE');
+         
+            
             $table->timestamps();
         });
     }

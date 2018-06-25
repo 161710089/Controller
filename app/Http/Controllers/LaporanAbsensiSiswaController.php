@@ -1,4 +1,4 @@
-<?php
+<!-- 
 
 namespace App\Http\Controllers;
 
@@ -133,3 +133,4 @@ public function kelasAjax($id){
         return redirect()->route('laporan_absensi_siswa.index');      }
 
 }
+ -->

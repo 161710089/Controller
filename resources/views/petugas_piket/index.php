@@ -44,7 +44,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                    <form method="get" role="form" action="input">
+                                    <form method="get" role="form" action="{{input}}">
                                 <div class="col-lg-6">
 <input type="hidden" name="module" value="input_absen">
 <input type="hidden" name="jam" value="1">

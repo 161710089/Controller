@@ -50,6 +50,12 @@
     <!-- Core CSS - Include with every page -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" media="all" href="/assets/datepick/daterangepicker.css" />
+
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script> 
+      <script type="text/javascript" src="/assets/datepick/moment.min.js"></script>
+      <script type="text/javascript" src="/assets/datepick/daterangepicker.js"></script>
+
 
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" ></script>
@@ -88,17 +94,21 @@ function myFunction() {
 
 
 <hr>
-<div class="row">
+{{-- <div class="row">
     <div class="col-md-4">
      {!! Form::label('tanggal','pilih kelas') !!}   
      {!! Form::select('id', $kelas ,null,array ('id'=>'kelas','class' => 'form-control')) !!}   
         
     </div>
-</div>
+</div> --}}
                         <!-- /.panel-heading -->
+{{-- <form action="absensi_siswa/index.php" name="date" method="get">                    
+<button class="btn btn-primary" type="submit">apply</button>
+ --}}
+
+
                         <div class="panel-body">
                             <div class="table-responsive">
-                  
                                 <table  id="myTable"class="table">
   
                                         
@@ -107,7 +117,7 @@ function myFunction() {
 <tr>
 <td colspan="5" class="text-center success">no</td>    
 <td colspan="5" class="text-center success">@sortablelink('tanggal')</td>    
-<td  colspan="5" class="text-center success">@sortablelink('id_siswa')</td>
+<td colspan="5" class="text-center success">@sortablelink('Nama')</td>    
 <td colspan="5" class="text-center success">@sortablelink('id_kelas')</td>    
 <td  colspan="5" class="text-center success">@sortablelink('keterangan')</td>
 <td  colspan="5" class="text-center success">@sortablelink('id_PetugasPiket')</td>
@@ -119,6 +129,7 @@ function myFunction() {
     <tbody id="absensi_siswa">
                            @php $no = 1; @endphp
                      
+
                         @foreach($absensi_siswa as $data)
 <td colspan="5" class="text-center success">{{ $no++ }}</td>
 <td colspan="5" class="text-center">{{ $data->tanggal }}</td>

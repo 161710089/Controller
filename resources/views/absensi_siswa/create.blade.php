@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.petugas')
 @section('content')
 	<div class="row">
 		<div class="container">
@@ -9,29 +9,14 @@
 						<a href="{{route('absensi_siswa.index')}}">Kembali</a>
 					</div>
 					</div>
+					
 					<div class="panel-body">
 						<form action="{{route('absensi_siswa.store')}}" method="post">
 							{{csrf_field()}}
 
-					<div class="form-group {{ $errors->has('id_siswa') ? ' has-error' : '' }}">
-			  					<label class="control-label">Nama Siswa </label>	
-			  					<select name="id_siswa" class="form-control">
-			  					<option>Pilih Siswa</option>
-			  					@foreach($siswa as $data)
-			  						<option value="{{ $data->id }}">{{ $data->Nama }}</option>
-			  				@endforeach
-			  			</select>
-			  			@if ($errors->has('id_siswas'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('id_siswas') }}</strong>
-                            </span>
-                        @endif
-			  		</div>
-					
-
 					<div class="form-group {{ $errors->has('id_kelas') ? ' has-error' : '' }}">
 			  					<label class="control-label">Nama Kelas </label>	
-			  					<select name="id_kelas" class="form-control">
+			  					<select name="id_kelas" class="form-control" >
 			  					<option>Pilih Kelas</option>
 			  					@foreach($kelas as $data)
 			  						<option value="{{ $data->id }}">{{ $data->nama_kelas }}</option>
@@ -43,6 +28,24 @@
                             </span>
                         @endif
 			  		</div>
+	
+					<div class="form-group {{ $errors->has('id_siswa') ? ' has-error' : '' }}">
+			  					<label class="control-label">Nama Siswa </label>	
+			  					<select name="id_siswa" class="form-control" >
+			  					<option>Pilih Siswa</option>
+			  					@foreach($siswa as $data)
+			  						<option value="{{ $data->id }}">
+			  							{{ $data->Nama }}|{{ $data->Nis }}</option>
+			  				@endforeach
+			  			</select>
+			  			@if ($errors->has('id_siswas'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('id_siswas') }}</strong>
+                            </span>
+                        @endif
+			  		</div>
+					
+
 					
 
 					<div class="form-group {{$errors->has('tanggal') ? 'has-error' : ''}}">
@@ -66,7 +69,22 @@
 										<strong>{{$errors->first('keterangan')}}</strong>
 									</span>
 								@endif
+
 							</div>
+<div class="form-group {{ $errors->has('id_user') ? 'has error' : '' }}">
+			  			<select name="id_user" class="form-control">
+			  				<option>Pilih Nama User</option>
+			  				@foreach($user as $data)
+			  				<option value="{{ $data->id }}">{{ $data->name }}</option>
+			  				@endforeach
+			  			</select>
+			  			@if ($errors->has('id_user'))
+			  			<span class="help-block">
+			  				<strong>{{ $errors->first('id_user') }}</strong>
+			  			</span>
+			  			@endif
+			  		</div>
+
 
 					<div class="form-group {{ $errors->has('id_PetugasPiket') ? ' has-error' : '' }}">
 			  					<label class="control-label">Nama Petugas </label>	
@@ -83,7 +101,7 @@
                         @endif
 			  		</div>
 							
-
+			  		
 							<div class="form-group">
 								<button type="submit" class="btn btn-primary">Tambah</button>
 							</div>
@@ -94,4 +112,41 @@
 			</div>
 		</div>
 	</div>
+	<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#kelas').change(function() {
+			$('#nama').html('');
+			$.ajax({
+				method : 'GET',
+				dataType: 'html',
+				url : 'filter/kelas/' + $(this).val(),
+				success : function(data){
+					$('#nama').append(data);
+				},
+				error : function() {
+					$('#nama').html('Tidak Ada Hasil');
+				}
+
+			});			
+		});
+		$('#class').change(function() {
+			$('#name').html('');
+			$.ajax({
+				method : 'GET',
+				dataType: 'html',
+				url : 'filter/kelas/' + $(this).val(),
+				success : function(data){
+					$('#name').append(data);
+				},
+				error : function() {
+					$('#name').html('Tidak Ada Hasil');
+				}
+
+			});			
+		})
+	});
+</script>
+
 @endsection
+

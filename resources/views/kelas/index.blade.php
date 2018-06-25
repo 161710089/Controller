@@ -10,12 +10,10 @@
 			  	<div class="table-responsive">
 				  <table class="table">
 				  	<thead>
-			  		<tr>
-			  		  <th>No</th>
-					<tr>    
-<td colspan="5"  class="success text-center" >No</td>
-<td  colspan="5" class="text-center success">@sortablelink('nama_kelas')</td>
-<td  colspan="5" class="text-center success">Nama Jurusan</td>
+			  		    
+<td colspan="5"  class=" text-center" >No</td>
+<td  colspan="5" class="text-center ">@sortablelink('nama_kelas')</td>
+<td  colspan="5" class="text-center ">Nama Jurusan</td>
 					</tr>
 				  	</thead>
 				  	<tbody>
@@ -24,9 +22,9 @@
 
 
 				  	  <tr>
-				    	<td colspan="5" class="text-center success">{{ $no++ }}</td>
-				    	<td colspan="5" class="text-center success">{{ $data->nama_kelas }}</td>
-				    	<td colspan="5" class="text-center success">{{ $data->jurusan->nama_jurusan }}</td>
+				    	<td colspan="5" class="text-center ">{{ $no++ }}</td>
+				    	<td colspan="5" class="text-center ">{{ $data->nama_kelas }}</td>
+				    	<td colspan="5" class="text-center ">{{ $data->jurusan->nama_jurusan }}</td>
 				    
 						<td>
 							<a class="btn btn-warning" href="{{ route('kelas.edit',$data->id) }}">Edit</a>

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.petugas')
 @section('content')
 	<div class="row">
 		<div class="container">
@@ -50,6 +50,22 @@
 									</span>
 								@endif
 							</div>
+
+<div class="form-group {{ $errors->has('id_user') ? 'has error' : '' }}">
+			  			<select name="id_user" class="form-control">
+			  				<option>Pilih Nama User</option>
+			  				@foreach($user as $data)
+			  				<option value="{{ $data->id }}">{{ $data->name }}</option>
+			  				@endforeach
+			  			</select>
+			  			@if ($errors->has('id_user'))
+			  			<span class="help-block">
+			  				<strong>{{ $errors->first('id_user') }}</strong>
+			  			</span>
+			  			@endif
+			  		</div>
+
+
 
 					<div class="form-group {{ $errors->has('id_PetugasPiket') ? ' has-error' : '' }}">
 			  					<label class="control-label">Nama Petugas </label>	

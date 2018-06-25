@@ -13,6 +13,8 @@
     <title>Dashboard</title>
 
     <!-- Fontfaces CSS-->
+       <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
     <link href="/assets/admin/css/font-face.css" rel="stylesheet" media="all">
     <link href="/assets/admin/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="/assets/admin/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">

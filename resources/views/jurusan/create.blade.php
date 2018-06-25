@@ -12,12 +12,12 @@
 			  	<form action="{{ route('jurusan.store') }}" method="post" >
 			  		{{ csrf_field() }}
 			  			
-			  		<div class="form-group {{ $errors->has('id_jurusan') ? ' has-error' : '' }}">
+			  		<div class="form-group {{ $errors->has('nama_jurusan') ? ' has-error' : '' }}">
 			  			<label class="control-label">Nama Jurusan</label>	
 			  		<input type="text" name="nama_jurusan" class="form-control" required="">	
-			  			@if ($errors->has('id_jurusan'))
+			  			@if ($errors->has('nama_jurusan'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('id_jurusan') }}</strong>
+                                <strong>{{ $errors->first('nama_jurusan') }}</strong>
                             </span>
                         @endif
 			  		</div>

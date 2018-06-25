@@ -17,4 +17,8 @@ public function guru() {
 public function petugas_piket() {
 	return $this->belongsTo('App\petugas_piket', 'id_PetugasPiket');
 	}
+	public function User() {
+	return $this->belongsTo('App\User', 'id_user');
+	}
+
 }

@@ -28,10 +28,16 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+public function absensi_siswa()
+{
+  // Setiap user akan memiliki banyak absensi_siswa
+  return $this->hasMany('App\absensi_siswa','id_user');
 }
 
-// public function data()
-// {
-//   // Setiap user akan memiliki banyak data
-//   return $this->hasMany('App\Data','user_id');
-// }
+public function absensi_guru()
+{
+  // Setiap user akan memiliki banyak absensi_siswa
+  return $this->hasMany('App\absensi_guru','id_user');
+}
+
+}

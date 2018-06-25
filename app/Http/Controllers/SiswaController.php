@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Siswa;
 use App\kelas;
+use App\absensi_siswa;
+use Auth;
 class SiswaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Create a new controller instance.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
+    
+
      public function index()
     {
             $siswa = siswa::with('kelas')->get();
@@ -19,20 +23,14 @@ class SiswaController extends Controller
          
     }
 
-public function siswa()
+public function absen(absensi_siswa $absensi_siswa)
     {
-            $siswa = siswa::with('kelas')->get();
-        return view('member.siswa',compact('siswa'));
-         
+         $absensi_siswa = Auth::siswa()->absensi_siswa()->paginate(10);
+            $jumlah_data = count($absensi_siswa['absensi_siswa']);
+          return view('siswa.absen',compact('absensi_siswa','jumlah_data'));
+     
     }
 
-public function search(Request $request)
-    {       
-            $cari =$request->get('search');
-            $siswa = siswa::where('Nama','LIKE','%'.$cari.'%')->paginate(10)->with('kelas')->get();
-            return view('absensi_siswa.index',compact('siswa'));
-         
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -54,8 +52,10 @@ public function search(Request $request)
     public function store(Request $request)
      {
          $this->validate($request,[
-            'Nis' => 'required|max:255',
-            'Nama' => 'required|max:255',
+            'Nis' => 'required|max:255|unique:siswas',
+            'Nama' => 'required|min:3|max:255',
+            'email' => 'required|email|unique:siswas',
+            'password' =>'required|min:6|confirmed',
             'id_kelas' => 'required|max:255',
             'jk' => 'required|max:255',
             'tempat_lahir' => 'required|max:255',
@@ -67,12 +67,13 @@ public function search(Request $request)
         $siswa = new siswa;
         $siswa->Nis = $request->Nis;
         $siswa->Nama = $request->Nama;
+        $siswa->email = $request->email;
+        $siswa->password = bcrypt($request->password);
         $siswa->id_kelas = $request->id_kelas;
         $siswa->jk    = $request->jk   ; 
         $siswa->tempat_lahir = $request->tempat_lahir;
         $siswa->tanggal_lahir = $request->tanggal_lahir;
         $siswa->alamat    = $request->alamat   ; 
-        
         // dd($siswa);
         $siswa->save();
         return redirect()->route('siswa.index');    }

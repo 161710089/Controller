@@ -45,6 +45,16 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        'siswa' => [
+            'driver' => 'session',
+            'provider' => 'siswaas',
+        ],
+
+        'siswa-api' => [
+            'driver' => 'token',
+            'provider' => 'siswaas',
+        ],
     ],
 
     /*
@@ -68,6 +78,12 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+
+
+        'siswaas' => [
+            'driver' => 'eloquent',
+            'model' => App\siswalogin::class,
         ],
 
         // 'users' => [
@@ -94,6 +110,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+
+        'siswaas' => [
+            'provider' => 'siswaas',
             'table' => 'password_resets',
             'expire' => 60,
         ],

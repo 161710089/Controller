@@ -28,5 +28,9 @@ public function petugas_piket() {
 public function kelas() {
 	return $this->belongsTo('App\kelas', 'id_kelas');
 	}
+public function User() {
+	return $this->belongsTo('App\User', 'id_user');
+	}
+
 
 }

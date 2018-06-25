@@ -25,7 +25,7 @@ class PetugasPiketController extends Controller
      */
    public function create()
  {
-        return view('petugas_piket.create');
+        return view('PetugasPiket.create');
     }    /**
      * Store a newly created resource in storage.
      *

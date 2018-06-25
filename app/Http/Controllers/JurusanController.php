@@ -36,16 +36,16 @@ class JurusanController extends Controller
      */
     public function store(Request $request)
     {
-
+        // unique dihapus karena ketika update data title tidak diubah juga tidak apa-apa
         $this->validate($request,[
-            'nama_jurusan' => 'required|unique:jurusan|max:255',
+            'nama_jurusan' => 'required|max:255',
         ]);
 
+        // update data berdasarkan id
         $jurusan = new jurusan;
         $jurusan->nama_jurusan = $request->nama_jurusan;
-        //dd($jurusan);
         $jurusan->save();
-        // return redirect()->route('jurusan.index');
+        return redirect()->route('jurusan.index');
     }
 
     /**

@@ -11,14 +11,14 @@
                   <table class="table">
                     <thead>
                    
-<td colspan="5"  class="success text-center" >No</td>
-<td  colspan="5" class="text-center success">Nama </td>
-<td colspan="5"  class="success text-center" >Nis</td>
-<td  colspan="5" class="text-center success">Kelas</td>
-<td  colspan="5" class="text-center success">jenis kelamin</td>
-<td  colspan="5" class="text-center success">tempat_lahir</td>
-<td  colspan="5" class="text-center success">tanggal lahir</td>
-<td  colspan="5" class="text-center success">Alamat</td>
+<td colspan="5"  class=" text-center" >No</td>
+<td  colspan="5" class="text-center ">Nama </td>
+<td colspan="5"  class=" text-center" >Nis</td>
+<td  colspan="5" class="text-center ">Kelas</td>
+<td  colspan="5" class="text-center ">jenis kelamin</td>
+<td  colspan="5" class="text-center ">tempat_lahir</td>
+<td  colspan="5" class="text-center ">tanggal lahir</td>
+<td  colspan="5" class="text-center ">Alamat</td>
                     </tr>
                     </thead>
                     <tbody>
@@ -27,14 +27,14 @@
 
 
                       <tr>
-                        <td colspan="5" class="text-center success">{{ $no++ }}</td>
-                        <td colspan="5" class="text-center success">{{ $data->Nama }}</td>
-                        <td colspan="5" class="text-center success">{{ $data->Nis }}</td>
-                        <td colspan="5" class="text-center success">{{ $data->kelas->nama_kelas }}</td>
-                        <td colspan="5" class="text-center success">{{ $data->jk }}</td>
-                        <td colspan="5" class="text-center success">{{ $data->tempat_lahir }}</td>
-                        <td colspan="5" class="text-center success">{{ $data->tanggal_lahir }}</td>
-                        <td colspan="5" class="text-center success">{{ $data->alamat}}</td>
+                        <td colspan="5" class="text-center ">{{ $no++ }}</td>
+                        <td colspan="5" class="text-center ">{{ $data->Nama }}</td>
+                        <td colspan="5" class="text-center ">{{ $data->Nis }}</td>
+                        <td colspan="5" class="text-center ">{{ $data->kelas->nama_kelas }}</td>
+                        <td colspan="5" class="text-center ">{{ $data->jk }}</td>
+                        <td colspan="5" class="text-center ">{{ $data->tempat_lahir }}</td>
+                        <td colspan="5" class="text-center ">{{ $data->tanggal_lahir }}</td>
+                        <td colspan="5" class="text-center ">{{ $data->alamat}}</td>
                     
                         <td>
                             <a class="btn btn-warning" href="{{ route('siswa.edit',$data->id) }}">Edit</a>

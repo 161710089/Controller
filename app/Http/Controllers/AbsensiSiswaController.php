@@ -7,7 +7,8 @@ use App\absensi_siswa;
 use App\siswa;
 use App\kelas;
 use App\petugas_piket;
-
+use App\User;
+use Auth;
 class AbsensiSiswaController extends Controller
 {
     /**
@@ -23,40 +24,25 @@ class AbsensiSiswaController extends Controller
     
     }
 
-// public function search(Request $request)
-//     {       
-//             $input =$request->all();
-            
-//             if($request)->get('search')){
-            
-//             $absensi_siswa = absensi_siswa::where("keterangan","LIKE","%{$request->get(search)}%")->paginate(5)
-//             ->with('kelas','petugas_piket','siswa')->get();
-//             return view('absensi_siswa.index',compact('siswa'));
-           
-//             }else{
-//                 $absensi_siswa=absensi_siswa::paginate(5);
-
-// }
-            
-//     }
-
 
 
     public function absen()
     {
-            $absensi_siswa = absensi_siswa::sortable()->with('siswa','petugas_piket','kelas')->get();
-            $kelas =kelas::pluck('nama_kelas','id');
-        return view('member.absen',compact('absensi_siswa','kelas'));
+           $absensi_siswa = Auth::user()->absensi_siswa()->paginate(10);
+            $jumlah_data = count($absensi_siswa['absensi_siswa']);
+          return view('siswa.absen',compact('absensi_siswa','jumlah_data'));
     
     }
-public function kelasAjax($id){
-    if ($id==0) {
-        $absensi_siswa = absensi_siswa::all();
-    }else{
-        $absensi_siswa = absensi_siswa::where('id_kelas','=',$id)->get();
-    }
-    return $absensi_siswa;
-}
+
+
+// public function kelasAjax($id){
+//     if ($id==0) {
+//         $absensi_siswa = absensi_siswa::all();
+//     }else{
+//         $absensi_siswa = absensi_siswa::where('id_kelas','=',$id)->get();
+//     }
+//     return $absensi_siswa;
+// }
    
     /**
      * Show the form for creating a new resource.
@@ -69,7 +55,9 @@ public function kelasAjax($id){
         $siswa = siswa::all();
         $kelas =kelas::all();
         $petugas_piket =petugas_piket::all();
-        return view('absensi_siswa.create',compact('absensisiswa', 'siswa','kelas','petugas_piket'));
+        $user = User::all();
+       
+        return view('absensi_siswa.create',compact('absensisiswa', 'siswa','kelas','petugas_piket','user'));
     }    /**
      * Store a newly created resource in storage.
      *
@@ -85,15 +73,21 @@ public function kelasAjax($id){
             'tanggal' => 'required|max:255',
             'keterangan' => 'required|max:255',
             'id_PetugasPiket' => 'required|max:255',
+            'id_user'=>'required|max:255',
+     
             ]);
 
         $absensi_siswa = new absensi_siswa;
         
         $absensi_siswa->id_siswa = $request->id_siswa;
         $absensi_siswa->id_kelas = $request->id_kelas;
+        $siswas = siswa::findOrFail($request->id_siswa);
+        
         $absensi_siswa->tanggal = $request->tanggal;
         $absensi_siswa->keterangan    = $request->keterangan   ; 
         $absensi_siswa->id_PetugasPiket = $request->id_PetugasPiket;
+        $absensi_siswa->id_user = $request->id_user;
+       
         // dd($absensi_siswa);
         $absensi_siswa->save();
         return redirect()->route('absensi_siswa.index');    }
@@ -171,6 +165,20 @@ public function kelasAjax($id){
         $absensi_siswa->delete();
         return redirect()->route('absensi_siswa.index');      }
 
-}
+    public function filter($id)
+    {
+        $siswa = Siswa::where('id_kelas', $id)->get();
+        if($siswa->count() > 0){
+            foreach ($siswa as $data) {
+                echo '<option class="form-control" value="'.$data->id.'">'.$data->Nama.'</option>';
+            }
+        }else{
+            echo '<option class="form-control">Tidak Ada Hasil</option>';
+        }
+    }
+    }
+
+
+
 
 

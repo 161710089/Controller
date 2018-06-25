@@ -45,12 +45,7 @@
                                 <strong>{{ $errors->first('jk') }}</strong>
                             </span>
                         @endif
-			  				  		
-
-
-
-
-
+			  				  	
 
 <div class="form-group {{ $errors->has('tempat_lahir') ? ' has-error' : '' }}">
 			  			<label class="control-label">tempat lahir</label>	

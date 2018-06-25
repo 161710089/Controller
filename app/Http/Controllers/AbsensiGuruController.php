@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\absensi_guru;
 use App\guru;
 use App\petugas_piket;
+use App\User;
+use Auth;
 
 class AbsensiGuruController extends Controller
 {
@@ -26,13 +28,24 @@ class AbsensiGuruController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+        public function absen()
+    {
+           $absensi_guru = Auth::user()->absensi_guru()->paginate(10);
+            $jumlah_data = count($absensi_guru['absensi_guru']);
+          return view('guru.absen',compact('absensi_guru','jumlah_data'));
+    
+    }
+
+
     public function create()
     {
         $absensi_guru = absensi_guru::all();
         $guru = guru::all();
         $petugas_piket = petugas_piket::all();
-        
-        return view('absensi_guru.create',compact('absensi_guru', 'guru','petugas_piket'));
+        $user = User::all();
+       
+        return view('absensi_guru.create',compact('absensi_guru', 'guru','petugas_piket','user'));
     }
 
     /**
@@ -49,6 +62,8 @@ class AbsensiGuruController extends Controller
             'tanggal' => 'required',
             'keterangan'=>'required',
             'id_PetugasPiket' => 'required',
+            'id_user'=>'required|max:255',
+     
             
         ]);
 
@@ -57,6 +72,8 @@ class AbsensiGuruController extends Controller
         $absensi_guru->tanggal = $request->tanggal;
         $absensi_guru->keterangan = $request->keterangan;
         $absensi_guru->id_PetugasPiket =$request->id_PetugasPiket;
+           $absensi_guru->id_user = $request->id_user;
+     
         $absensi_guru->save();
         return redirect()->route('absensi_guru.index');
     }

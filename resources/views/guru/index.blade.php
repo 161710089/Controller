@@ -11,13 +11,13 @@
                   <table class="table">
                     <thead>
                    
-<td colspan="5"  class="success text-center" >No</td>
-<td  colspan="5" class="text-center success">Nama </td>
-<td colspan="5"  class="success text-center" >Nik</td>
-<td  colspan="5" class="text-center success">jenis kelamin</td>
-<td  colspan="5" class="text-center success">tempat_lahir</td>
-<td  colspan="5" class="text-center success">tanggal lahir</td>
-<td  colspan="5" class="text-center success">Alamat</td>
+<td colspan="5"  class=" text-center" >No</td>
+<td  colspan="5" class="text-center ">Nama </td>
+<td colspan="5"  class=" text-center" >Nik</td>
+<td  colspan="5" class="text-center ">jenis kelamin</td>
+<td  colspan="5" class="text-center ">tempat_lahir</td>
+<td  colspan="5" class="text-center ">tanggal lahir</td>
+<td  colspan="5" class="text-center ">Alamat</td>
                     </tr>
                     </thead>
                     <tbody>
@@ -26,13 +26,13 @@
 
 
                       <tr>
-                        <td colspan="5" class="text-center success">{{ $no++ }}</td>
-                        <td colspan="5" class="text-center success">{{ $data->Nama }}</td>
-                        <td colspan="5" class="text-center success">{{ $data->Nik }}</td>
-                        <td colspan="5" class="text-center success">{{ $data->jk }}</td>
-                        <td colspan="5" class="text-center success">{{ $data->tempat_lahir }}</td>
-                        <td colspan="5" class="text-center success">{{ $data->tanggal_lahir }}</td>
-                        <td colspan="5" class="text-center success">{{ $data->alamat}}</td>
+                        <td colspan="5" class="text-center ">{{ $no++ }}</td>
+                        <td colspan="5" class="text-center ">{{ $data->Nama }}</td>
+                        <td colspan="5" class="text-center ">{{ $data->Nik }}</td>
+                        <td colspan="5" class="text-center ">{{ $data->jk }}</td>
+                        <td colspan="5" class="text-center ">{{ $data->tempat_lahir }}</td>
+                        <td colspan="5" class="text-center ">{{ $data->tanggal_lahir }}</td>
+                        <td colspan="5" class="text-center ">{{ $data->alamat}}</td>
                     
                         <td>
                             <a class="btn btn-warning" href="{{ route('guru.edit',$data->id) }}">Edit</a>
